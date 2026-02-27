@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -20,6 +20,16 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Aplication\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Aplication\Convercoes\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Aplication\Services\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Aplication\Regras\" />
   </ItemGroup>
 
 </Project>
