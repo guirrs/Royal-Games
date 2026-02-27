@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "Royal Games\\Exceptions\\DomainException.cs",
               "ToolTip": "C:\\Users\\46336142825\\Desktop\\Royal Games\\Royal Games\\Royal Games\\Exceptions\\DomainException.cs",
               "RelativeToolTip": "Royal Games\\Exceptions\\DomainException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-27T12:11:48.584Z",
               "EditorCaption": ""
@@ -40,15 +40,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Royal Games",
+              "Title": "Royal Games.csproj",
               "DocumentMoniker": "C:\\Users\\46336142825\\Desktop\\Royal Games\\Royal Games\\Royal Games\\Royal Games.csproj",
               "RelativeDocumentMoniker": "Royal Games\\Royal Games.csproj",
               "ToolTip": "C:\\Users\\46336142825\\Desktop\\Royal Games\\Royal Games\\Royal Games\\Royal Games.csproj",
               "RelativeToolTip": "Royal Games\\Royal Games.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-02-27T12:08:59.014Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-27T12:08:59.014Z"
             },
             {
               "$type": "Document",
@@ -60,8 +59,7 @@
               "RelativeToolTip": "Royal Games\\Contexts\\RoyalGamesContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-27T11:55:27.229Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-27T11:55:27.229Z"
             }
           ]
         }

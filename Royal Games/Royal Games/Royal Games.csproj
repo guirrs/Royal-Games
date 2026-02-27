@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Interfaces\**" />
+    <Content Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <None Remove="Interfaces\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.24" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.24" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.24">
@@ -23,13 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Aplication\" />
+    <Folder Include="Application\Conversoes\" />
+    <Folder Include="Application\Services\" />
+    <Folder Include="Application\Regras\" />
     <Folder Include="DTOs\" />
-    <Folder Include="Aplication\Convercoes\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Aplication\Services\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Aplication\Regras\" />
   </ItemGroup>
 
 </Project>
