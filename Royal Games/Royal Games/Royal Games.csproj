@@ -30,8 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Services\" />
-    <Folder Include="DTOs\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 
