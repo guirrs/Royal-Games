@@ -20,6 +20,15 @@ builder.Services.AddDbContext<RoyalGamesContext>(options => options.UseSqlServer
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<UsuarioService>();
 
+// Genero
+builder.Services.AddScoped<IGeneroRepository, IGeneroRepository>();
+builder.Services.AddScoped<GeneroService>();
+
+// Plataforma
+builder.Services.AddScoped<IPlataformaRepository, IPlataformaRepository>();
+builder.Services.AddScoped<PlataformaService>();
+
+
 // Classificacao Indicativa
 builder.Services.AddScoped<IClassificacaoRepository, ClassificacaoRepository>();
 builder.Services.AddScoped<ClassificacaoService>();
