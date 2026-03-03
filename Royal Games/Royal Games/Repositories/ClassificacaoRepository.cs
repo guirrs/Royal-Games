@@ -36,8 +36,8 @@ namespace Royal_Games.Repositories
 
         public void Atualizar(ClassificacaoIndicativa classificacao)
         {
-            ClassificacaoIndicativa? classificacaoBanco = _context.ClassificacaoIndicativa.FirstOrDefault
-                (classificacaoAux => classificacaoAux.ClassificacaoIndicativaID == classificacao.ClassificacaoIndicativaID);
+            ClassificacaoIndicativa? classificacaoBanco = _context.ClassificacaoIndicativa.Find
+                (classificacao.ClassificacaoIndicativaID);
 
             if(classificacaoBanco == null)
             {
@@ -45,6 +45,8 @@ namespace Royal_Games.Repositories
             }
 
             classificacaoBanco.Faixa = classificacao.Faixa;
+
+            _context.SaveChanges ();
         }
     }
 }

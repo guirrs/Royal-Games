@@ -4,13 +4,13 @@ namespace Royal_Games.Interface
 {
     public interface IUsuarioRepository 
     {
-        List<Usuario> Listar();
-        Usuario ObterPorId (int id);
-        Usuario ObterPorEmail (string email);
-        bool EmailExiste (string email);
+        public List<Usuario> Listar();
+        public Usuario ObterPorId (int id);
+        public Usuario ObterPorEmail (string email);
+        public bool EmailExiste (string email);
 
-        void Adicionar (Usuario usuario);
-        void Remover (int  id);
-        void Atualizar (Usuario usuario);
+        public void Adicionar (Usuario usuario);
+        public void Remover (int  id);
+        public void Atualizar (Usuario usuario);
     }
 }
