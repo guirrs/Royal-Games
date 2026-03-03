@@ -6,9 +6,8 @@
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public decimal Preco {  get; set; }
-        public bool StatusJogo { get; set; }
+        public bool? StatusJogo { get; set; }
         public DateTime DataLancamento { get; set; }
-        public IFormFile Imagem { get; set; } = null!;
 
         // Genero
         public List<int> GenerosId { get; set; }

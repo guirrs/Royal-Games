@@ -24,7 +24,11 @@ namespace Royal_Games.Repositories
 
         public byte[] ObterImagem(int id)
         {
-
+            var jogo = _context.Jogo
+                .Where(jogoAux => id == jogoAux.JogoID)
+                .Select(jogoAux => jogoAux.Imagem)
+                .FirstOrDefault();
+            return jogo;
         }
 
         public void Adicionar(Jogo jogoDto)

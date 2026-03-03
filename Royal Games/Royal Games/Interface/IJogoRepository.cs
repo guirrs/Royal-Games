@@ -7,8 +7,8 @@ namespace Royal_Games.Interface
         public List<Jogo> Listar();
         public Jogo ObterPorId(int id);
 
-        public IFormFile ObterImagem(Jogo jogoDto);
-        public void Adcionar(Jogo jogoDto);
+        public byte[] ObterImagem(int id);
+        public void Adicionar(Jogo jogoDto);
         public void Remover (int  id);
         public void Atualizar(Jogo jogoDto);
     }

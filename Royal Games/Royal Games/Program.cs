@@ -24,6 +24,14 @@ builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<IClassificacaoRepository, ClassificacaoRepository>();
 builder.Services.AddScoped<ClassificacaoService>();
 
+// Genero
+builder.Services.AddScoped<IGeneroRepository, IGeneroRepository>();
+builder.Services.AddScoped<GeneroService>();
+
+// Plataforma
+builder.Services.AddScoped<IPlataformaRepository, IPlataformaRepository>();
+builder.Services.AddScoped<PlataformaService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

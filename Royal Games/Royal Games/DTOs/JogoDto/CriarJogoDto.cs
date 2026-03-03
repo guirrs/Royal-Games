@@ -9,6 +9,6 @@
 
         public  List<int> GenerosId { get; set; } = null!;
         public List<int> PlataformaId { get; set; } = null!;
-        public int ClassificacaoId { get; set; }
+        public int? ClassificacaoId { get; set; }
     }
 }
