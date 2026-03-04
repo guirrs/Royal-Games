@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Royal Games")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22fa5984f17fa41fd20e0a2890c6b8b5792b5f6a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+690d0357ec7be8550226ce23b3ea72c3b932270e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Royal Games")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Royal Games")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

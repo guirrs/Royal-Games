@@ -1,6 +1,6 @@
 ﻿using Royal_Games.Domains;
-using Royal_Games.DTO.GeneroDto;
 using Royal_Games.DTO.PlataformaDTo;
+using Royal_Games.DTOs.PlataformaDto;
 using Royal_Games.Exceptions;
 using Royal_Games.Interface;
 
@@ -45,11 +45,11 @@ namespace Royal_Games.Application.Services
             return plataformaDTO;
         }
 
-        private static void ValidarPlataforma(LerPlataformaDto plataforma)
+        private static void ValidarNome(string nome)
         {
-            if (string.IsNullOrEmpty(plataforma.Nome))
+            if (string.IsNullOrWhiteSpace(nome))
             {
-                throw new DomainException("O nome da Plataforma é obrigatório.");
+                throw new DomainException("O nome do gênero é obrigatório.");
             }
         }
 
@@ -65,22 +65,22 @@ namespace Royal_Games.Application.Services
             }
         }
 
-        public void Cadastrar(LerPlataformaDto Plataforma)
+        public void Cadastrar(CriarPlataformaDTO PlataformaDto)
         {
-            ValidarPlataforma(Plataforma);
-            ValidarPlataformaExistente(Plataforma.Nome);
+            ValidarNome(PlataformaDto.Nome);
+            ValidarPlataformaExistente(PlataformaDto.Nome);
 
             Plataforma novaPlataforma = new Plataforma
             {
-                Nome = Plataforma.Nome
+                Nome = PlataformaDto.Nome
             };
 
             _repository.Cadastrar(novaPlataforma);
         }
 
-        public void Atualizar(int id, LerPlataformaDto plataforma)
+        public void Atualizar(int id, LerPlataformaDTO PlataformaDto)
         {
-            ValidarPlataforma(plataforma);
+            ValidarNome(PlataformaDto.Nome);
 
             Plataforma PlataformaBanco = _repository.BuscarporID(id);
 
@@ -89,9 +89,9 @@ namespace Royal_Games.Application.Services
                 throw new DomainException("Plataforma não encontrada");
             }
 
-            ValidarPlataformaExistente(plataforma.Nome, id);
+            ValidarPlataformaExistente(PlataformaDto.Nome, id);
 
-            PlataformaBanco.Nome = plataforma.Nome;
+            PlataformaBanco.Nome = PlataformaDto.Nome;
 
             _repository.Atualizar(PlataformaBanco);
         }

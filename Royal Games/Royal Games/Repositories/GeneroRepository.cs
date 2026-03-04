@@ -18,6 +18,21 @@ namespace Royal_Games.Repositories
             return _context.Genero.ToList();
         }
 
+        public bool GeneroExiste(string nome, int? GeneroId = null)
+        {
+            if (GeneroId == null)
+            {
+                return _context.Genero.Any(g => g.Nome == nome);
+            }
+            else
+            {
+                return _context.Genero.Any(g => g.Nome == nome && g.GeneroID != GeneroId.Value);
+            }
+        }
+
+
+
+
         public Genero BuscarporID(int id)
         {
             Genero? genero = _context.Genero.FirstOrDefault(g => g.GeneroID == id);

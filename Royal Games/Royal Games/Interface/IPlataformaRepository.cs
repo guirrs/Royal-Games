@@ -7,9 +7,7 @@ namespace Royal_Games.Interface
         List<Plataforma> Listar();
         Plataforma BuscarporID(int id);
 
-        bool PlataformaExiste(string nome, int? GeneroID = null);
-
-
+        bool PlataformaExiste(string nome, int? PlataformaID = null);
         void Cadastrar(Plataforma plataforma);
         void Atualizar(Plataforma plataforma);
         void Deletar(int id);

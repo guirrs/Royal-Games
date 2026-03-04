@@ -1,6 +1,6 @@
 ﻿namespace Royal_Games.DTOs.ClassificacaoDto
 {
-    public class CriarClassificacaoDto
+    public class CriarGeneroDto
     {
         public string Faixa { get; set; }
     }

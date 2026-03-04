@@ -29,7 +29,7 @@
     "Parameters": [
       {
         "Name": "classificacaoDto",
-        "Type": "Royal_Games.DTOs.ClassificacaoDto.CriarClassificacaoDto",
+        "Type": "Royal_Games.DTOs.ClassificacaoDto.CriarGeneroDto",
         "IsRequired": true
       }
     ],
@@ -55,7 +55,7 @@
     "Parameters": [
       {
         "Name": "classificacaoDto",
-        "Type": "Royal_Games.DTOs.ClassificacaoDto.CriarClassificacaoDto",
+        "Type": "Royal_Games.DTOs.ClassificacaoDto.CriarGeneroDto",
         "IsRequired": true
       },
       {
@@ -119,6 +119,244 @@
     "ReturnTypes": [
       {
         "Type": "Royal_Games.DTOs.ClassificacaoDto.LerClassificacaoDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Royal_Games.Controllers.GeneroController",
+    "Method": "Listar",
+    "RelativePath": "api/Genero",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Royal_Games.DTOs.GeneroDto.LerGeneroDTO, Royal Games, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Royal_Games.Controllers.GeneroController",
+    "Method": "Adicionar",
+    "RelativePath": "api/Genero",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "GeneroDto",
+        "Type": "Royal_Games.DTOs.GeneroDto.CriarGeneroDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Royal_Games.DTOs.GeneroDto.LerGeneroDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Royal_Games.Controllers.GeneroController",
+    "Method": "Atualizar",
+    "RelativePath": "api/Genero",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "GeneroDTO",
+        "Type": "Royal_Games.DTOs.GeneroDto.LerGeneroDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Royal_Games.Controllers.GeneroController",
+    "Method": "Remover",
+    "RelativePath": "api/Genero",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Royal_Games.DTOs.GeneroDto.LerGeneroDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Royal_Games.Controllers.GeneroController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Genero/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Royal_Games.DTOs.GeneroDto.LerGeneroDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Royal_Games.Controllers.PlataformaController",
+    "Method": "Listar",
+    "RelativePath": "api/Plataforma",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Royal_Games.DTO.PlataformaDTo.LerPlataformaDTO, Royal Games, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Royal_Games.Controllers.PlataformaController",
+    "Method": "Adicionar",
+    "RelativePath": "api/Plataforma",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PlataformaDto",
+        "Type": "Royal_Games.DTOs.PlataformaDto.CriarPlataformaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Royal_Games.DTO.PlataformaDTo.LerPlataformaDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Royal_Games.Controllers.PlataformaController",
+    "Method": "Atualizar",
+    "RelativePath": "api/Plataforma",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PlataformaDto",
+        "Type": "Royal_Games.DTO.PlataformaDTo.LerPlataformaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Royal_Games.Controllers.PlataformaController",
+    "Method": "Remover",
+    "RelativePath": "api/Plataforma",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Royal_Games.DTO.PlataformaDTo.LerPlataformaDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Royal_Games.Controllers.PlataformaController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Plataforma/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Royal_Games.DTOs.GeneroDto.LerGeneroDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",

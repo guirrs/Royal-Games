@@ -1,68 +1,109 @@
-﻿using Royal_Games.Contexts;
-using Royal_Games.Domains;
+﻿using Royal_Games.Domains;
+using Royal_Games.DTO.GeneroDTO;
+using Royal_Games.Exceptions;
 using Royal_Games.Interface;
 
-namespace Royal_Games.Repositories
+namespace Royal_Games.Application.Services
 {
-    public class GeneroRepository: IGeneroRepository
+    public class GeneroService
     {
-        private readonly RoyalGamesContext _context;
+        private readonly IGeneroRepository _repository;
 
-        public GeneroRepository(RoyalGamesContext context)
+        public GeneroService(IGeneroRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        public List<Genero> Listar()
+        public List<LerGeneroDTO> Listar()
         {
-            return _context.Genero.ToList();
-        }
-
-        public Genero BuscarporID(int id)
-        {
-            Genero? genero = _context.Genero.FirstOrDefault(g => g.GeneroID == id);
-
-            return genero;
-        }
-
-        public void Cadastrar(Genero genero)
-        {
-            _context.Genero.Add(genero);
-            _context.SaveChanges();
-        }
-
-        public void atualizar(Genero genero)
-        {
-            Genero? generoBanco = _context.Genero.FirstOrDefault(g => g.GeneroID == genero.GeneroID);
-
-            if(generoBanco == null)
+            List<Genero> generos = _repository.Listar();
+            List<LerGeneroDTO> generoDTOs = generos.Select(genero => new LerGeneroDTO
             {
-                return;
+                GeneroID = genero.GeneroID,
+                Nome = genero.Nome
+            }).ToList();
+
+            return generoDTOs;
+        }
+
+        public LerGeneroDTO ObterPorID(int id)
+        {
+            Genero genero = _repository.BuscarPorID(id);
+            if (genero == null)
+            {
+                throw new DomainException("Genero não encontrado");
             }
 
-            _context.Genero.Update(genero);
-            _context.SaveChanges();
+            LerGeneroDTO generoDTO = new LerGeneroDTO
+            {
+                GeneroID = genero.GeneroID,
+                Nome = genero.Nome
+            };
 
+            return generoDTO;
         }
 
-        public void Deletar(int id)
+        private static void ValidarGenero(GeneroDTO genero)
         {
-            Genero? generoBanco = _context.Genero.FirstOrDefault(g => g.GeneroID == id);
-
-            if(generoBanco == null)
+            if (string.IsNullOrEmpty(genero.Nome))
             {
-                return;
+                throw new DomainException("O nome do genero é obrigatório.");
+            }
+        }
+
+        private void ValidarGeneroExistente(string nome, int? id = null)
+        {
+            bool existe = id == null
+                ? _repository.GeneroExistente(nome)
+                : _repository.GeneroExistente(nome, id.Value);
+
+            if (existe)
+            {
+                throw new DomainException("Genero já existente");
+            }
+        }
+
+        public void Cadastrar(GeneroDTO genero)
+        {
+            ValidarGenero(genero);
+            ValidarGeneroExistente(genero.Nome);
+
+            Genero novoGenero = new Genero
+            {
+                Nome = genero.Nome
+            };
+
+            _repository.Cadastrar(novoGenero);
+        }
+
+        public void Atualizar(int id, GeneroDTO genero)
+        {
+            ValidarGenero(genero);
+
+            Genero generoBanco = _repository.BuscarPorID(id);
+
+            if (generoBanco == null)
+            {
+                throw new DomainException("Genero não encontrado");
             }
 
-            _context.Genero.Remove(generoBanco);
-            _context.SaveChanges();
+            ValidarGeneroExistente(genero.Nome, id);
+
+            generoBanco.Nome = genero.Nome;
+
+            _repository.Atualizar(generoBanco);
         }
 
+        public void Remover(int id)
+        {
+            Genero generoBanco = _repository.BuscarPorID(id);
 
+            if (generoBanco == null)
+            {
+                throw new DomainException("Genero não encontrado");
+            }
 
-
-
-
-
+            _repository.Deletar(id);
+        }
     }
 }

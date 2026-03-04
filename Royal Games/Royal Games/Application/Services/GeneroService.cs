@@ -1,5 +1,5 @@
 ﻿using Royal_Games.Domains;
-using Royal_Games.DTO.GeneroDto;
+using Royal_Games.DTOs.GeneroDto;
 using Royal_Games.Exceptions;
 using Royal_Games.Interface;
 
@@ -14,19 +14,19 @@ namespace Royal_Games.Application.Services
             _repository = repository;
         }
 
-        public List<LerPlataformaDto> Listar()
+        public List<LerGeneroDTO> Listar()
         {
             List<Genero> generos = _repository.Listar();
-            List<LerPlataformaDto> generoDTOs = generos.Select(genero => new LerPlataformaDto
+            List<LerGeneroDTO> GeneroDTOs = generos.Select(genero => new LerGeneroDTO
             {
                 GeneroID = genero.GeneroID,
                 Nome = genero.Nome
             }).ToList();
 
-            return generoDTOs;
+            return GeneroDTOs;
         }
 
-        public LerPlataformaDto ObterPorID(int id)
+        public LerGeneroDTO ObterPorID(int id)
         {
             Genero genero = _repository.BuscarporID(id);
             if (genero == null)
@@ -34,20 +34,20 @@ namespace Royal_Games.Application.Services
                 throw new DomainException("Genero não encontrado");
             }
 
-            LerPlataformaDto generoDTO = new LerPlataformaDto
+            LerGeneroDTO GeneroDTO = new LerGeneroDTO
             {
                 GeneroID = genero.GeneroID,
                 Nome = genero.Nome
             };
 
-            return generoDTO;
+            return GeneroDTO;
         }
 
-        private static void ValidarGenero(LerPlataformaDto genero)
+        private static void ValidarNome(string nome)
         {
-            if (string.IsNullOrEmpty(genero.Nome))
+            if (string.IsNullOrWhiteSpace(nome))
             {
-                throw new DomainException("O nome do genero é obrigatório.");
+                throw new DomainException("O nome do gênero é obrigatório.");
             }
         }
 
@@ -63,22 +63,22 @@ namespace Royal_Games.Application.Services
             }
         }
 
-        public void Cadastrar(LerPlataformaDto genero)
+        public void Cadastrar(CriarGeneroDTO GeneroDTO)
         {
-            ValidarGenero(genero);
-            ValidarGeneroExistente(genero.Nome);
+            ValidarNome(GeneroDTO.Nome);
+            ValidarGeneroExistente(GeneroDTO.Nome);
 
             Genero novoGenero = new Genero
             {
-                Nome = genero.Nome
+                Nome = GeneroDTO.Nome
             };
 
             _repository.Cadastrar(novoGenero);
         }
 
-        public void Atualizar(int id, LerPlataformaDto genero)
+        public void Atualizar(int id, LerGeneroDTO GeneroDto)
         {
-            ValidarGenero(genero);
+            ValidarNome(GeneroDto.Nome);
 
             Genero generoBanco = _repository.BuscarporID(id);
 
@@ -87,9 +87,9 @@ namespace Royal_Games.Application.Services
                 throw new DomainException("Genero não encontrado");
             }
 
-            ValidarGeneroExistente(genero.Nome, id);
+            ValidarGeneroExistente(GeneroDto.Nome, id);
 
-            generoBanco.Nome = genero.Nome;
+            generoBanco.Nome = GeneroDto.Nome;
 
             _repository.atualizar(generoBanco);
         }

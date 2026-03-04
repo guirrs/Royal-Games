@@ -6,9 +6,8 @@ namespace Royal_Games.Interface
     {
         List<Genero> Listar();
         Genero BuscarporID(int id);
-
-        bool GeneroExiste(string nome, int? GeneroID = null);
-
+        
+        bool GeneroExiste(string nome, int? GeneroID = null );
         void Cadastrar(Genero genero);
         void atualizar(Genero genero);
         void Deletar(int id);

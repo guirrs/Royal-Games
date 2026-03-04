@@ -11,7 +11,22 @@ namespace Royal_Games.Repositories
         public PlataformaRepository(RoyalGamesContext context)
         {
             _context = context;
+
         }
+
+        public bool PlataformaExiste(string nome, int? plataformaId = null)
+        {
+            if (plataformaId == null)
+            {
+                return _context.Plataforma.Any(p => p.Nome == nome);
+            }
+            else
+            {
+                return _context.Plataforma.Any(p => p.Nome == nome && p.PlataformaID != plataformaId.Value);
+            }
+        }
+
+
 
         public List<Plataforma> Listar()
         {

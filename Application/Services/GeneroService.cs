@@ -17,9 +17,35 @@ namespace Royal_Games.Application.Services
         public List<generoDTO> Listar()
         {
             List<Genero> generos = _repository.Listar();
-            List<generoDTO> generoDTO = generos.Select(generoBanco => new LerGeneroDTO )
-            .ToList();
+            List<LerGeneroDTO> generoDTO = generos.Select(genero => new LerGeneroDTO
+            {
+
+                GeneroID = genero.GeneroID,
+                Nome = genero.Nome
+
+            }).ToList();
+
+            return generoDTO;
         }
+
+        public LerGeneroDTO ObterporID(int id)
+        {
+            Genero genero = _repository.BuscarporID(id);
+            if(genero == null)
+            {
+                throw new DomainException("Genero não encontrado")
+            }
+
+            LerGeneroDTO generoDTO = new LerGeneroDTO
+            {
+                GeneroID = genero.GeneroID,
+                Nome = genero.Nome
+            };
+
+            return generoDTO;
+        }
+
+
 
         private static void ValidarGenero(generoDTO genero)
         {
@@ -33,19 +59,53 @@ namespace Royal_Games.Application.Services
         {
             ValidarGenero(genero);
 
-            if(_repository.GeneroExistente(genero.Nome)
+            if (_repository.GeneroExistente(CriarGeneroDTO.Nome))
+            {
+                throw new DomainException("Genero ja existente");
+            }
 
-           
-           
 
+                Genero genero = new Genero
+                {
+                    Nome = CriarGeneroDTO.Nome
+                };
 
+                _repository.Cadastrar(Genero);
+            }
 
+           public void Atualizar(int id, generoDTO genero)
+        {
+            ValidarGenero(CriarGeneroDTO.Nome);
+
+            Genero generoBanco = _repository.BuscarporID(id);
+
+            if(generoBanco == null)
+            {
+
+                throw new DomainException("Genero nao encontrado");
+            
+            }
+
+            if(_repository.GeneroExistente(CriarGeneroDTO.Nome, GeneroID: id))
+            {
+                throw new DomainException("Ja existe um genero com esse nome");
+            }
+
+            GeneroBanco.Nome = CriarGeneroDTO.Nome;
+            _repository.atualizar(generoBanco);
 
         }
 
+        public void Remover(int id)
+        {
+            Categoria categoriaBanco = _repository.BuscarporID(id);
 
+            if (categoriaBanco == null)
+            {
+                throw new DomainException("Categoria nao encontrada");
+            }
 
-
-
+            _repository.Deletar(id);
+        }
     }
 }

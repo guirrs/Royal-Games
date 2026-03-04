@@ -1,4 +1,4 @@
-﻿namespace Royal_Games.DTO
+﻿namespace Royal_Games.DTOs.PlataformaDto
 {
     public class CriarPlataformaDTO
     {

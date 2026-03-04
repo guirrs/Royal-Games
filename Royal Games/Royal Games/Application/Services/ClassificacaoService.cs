@@ -45,7 +45,7 @@ namespace Royal_Games.Application.Services
 
             return LerDto(classificacao);
         }
-        public LerClassificacaoDto Adicionar(CriarClassificacaoDto classificacaoDto)
+        public LerClassificacaoDto Adicionar(CriarGeneroDto classificacaoDto)
         {
             ClassificacaoIndicativa classificacao = new ClassificacaoIndicativa
             {
@@ -57,7 +57,7 @@ namespace Royal_Games.Application.Services
             return LerDto(classificacao);
         }
 
-        public LerClassificacaoDto Atualizar(CriarClassificacaoDto classificacaoDto, int id)
+        public LerClassificacaoDto Atualizar(CriarGeneroDto classificacaoDto, int id)
         {
             ClassificacaoIndicativa? classificacao = _repository.ObterPorId(id);
 

@@ -41,7 +41,7 @@ namespace Royal_Games.Controllers
         }
 
         [HttpPost]
-        public ActionResult<LerClassificacaoDto> Adicionar(CriarClassificacaoDto classificacaoDto)
+        public ActionResult<LerClassificacaoDto> Adicionar(CriarGeneroDto classificacaoDto)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace Royal_Games.Controllers
         }
 
         [HttpPut]
-        public ActionResult<LerClassificacaoDto> Atualizar(CriarClassificacaoDto classificacaoDto, int id)
+        public ActionResult<LerClassificacaoDto> Atualizar(CriarGeneroDto classificacaoDto, int id)
         {
             try
             {

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Royal_Games.Application.Services;
 using Royal_Games.Contexts;
@@ -21,11 +22,11 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<UsuarioService>();
 
 // Genero
-builder.Services.AddScoped<IGeneroRepository, IGeneroRepository>();
+builder.Services.AddScoped<IGeneroRepository, GeneroRepository>();
 builder.Services.AddScoped<GeneroService>();
 
 // Plataforma
-builder.Services.AddScoped<IPlataformaRepository, IPlataformaRepository>();
+builder.Services.AddScoped<IPlataformaRepository, PlataformaRepository>();
 builder.Services.AddScoped<PlataformaService>();
 
 
@@ -39,7 +40,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger();
 }
 
 app.UseHttpsRedirection();
