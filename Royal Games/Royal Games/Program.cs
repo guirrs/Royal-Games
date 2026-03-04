@@ -29,7 +29,6 @@ builder.Services.AddScoped<GeneroService>();
 builder.Services.AddScoped<IPlataformaRepository, PlataformaRepository>();
 builder.Services.AddScoped<PlataformaService>();
 
-
 // Classificacao Indicativa
 builder.Services.AddScoped<IClassificacaoRepository, ClassificacaoRepository>();
 builder.Services.AddScoped<ClassificacaoService>();

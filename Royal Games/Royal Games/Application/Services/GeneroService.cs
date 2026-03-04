@@ -1,9 +1,5 @@
 ﻿using Royal_Games.Domains;
-<<<<<<< HEAD
-using Royal_Games.DTOs.GeneroDto;
-=======
 using Royal_Games.DTO.GeneroDTo;
->>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a
 using Royal_Games.Exceptions;
 using Royal_Games.Interface;
 
@@ -18,7 +14,6 @@ namespace Royal_Games.Application.Services
             _repository = repository;
         }
 
-<<<<<<< HEAD
         public List<LerGeneroDTO> Listar()
         {
             List<Genero> generos = _repository.Listar();
@@ -40,7 +35,8 @@ namespace Royal_Games.Application.Services
             }
 
             LerGeneroDTO GeneroDTO = new LerGeneroDTO
-=======
+            }
+
         public List<generoDTO> Listar()
         {
             List<Genero> generos = _repository.Listar();
@@ -64,13 +60,11 @@ namespace Royal_Games.Application.Services
             }
 
             LerGeneroDTO generoDTO = new LerGeneroDTO
->>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a
             {
                 GeneroID = genero.GeneroID,
                 Nome = genero.Nome
             };
 
-<<<<<<< HEAD
             return GeneroDTO;
         }
 
@@ -123,7 +117,6 @@ namespace Royal_Games.Application.Services
             generoBanco.Nome = GeneroDto.Nome;
 
             _repository.atualizar(generoBanco);
-=======
             return generoDTO;
         }
 
@@ -175,32 +168,24 @@ namespace Royal_Games.Application.Services
 
             GeneroBanco.Nome = CriarGeneroDTO.Nome;
             _repository.atualizar(generoBanco);
-
->>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a
         }
 
         public void Remover(int id)
         {
-<<<<<<< HEAD
             Genero generoBanco = _repository.BuscarporID(id);
 
             if (generoBanco == null)
             {
                 throw new DomainException("Genero não encontrado");
-=======
             Categoria categoriaBanco = _repository.BuscarporID(id);
 
             if (categoriaBanco == null)
             {
                 throw new DomainException("Categoria nao encontrada");
->>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a
             }
 
             _repository.Deletar(id);
         }
     }
-<<<<<<< HEAD
+    }
 }
-=======
-}
->>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a
