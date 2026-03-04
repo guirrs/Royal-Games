@@ -1,14 +1,21 @@
+<<<<<<< HEAD
 ﻿using Royal_Games.Domains;
 using Royal_Games.DTO.PlataformaDTo;
 using Royal_Games.DTOs.PlataformaDto;
 using Royal_Games.Exceptions;
 using Royal_Games.Interface;
+=======
+﻿using Royal_Games.Interface;
+>>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a
 
 namespace Royal_Games.Application.Services
 {
     public class PlataformaService
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a
         private readonly IPlataformaRepository _repository;
 
         public PlataformaService(IPlataformaRepository repository)
@@ -16,6 +23,7 @@ namespace Royal_Games.Application.Services
             _repository = repository;
         }
 
+<<<<<<< HEAD
         public List<LerPlataformaDTO> Listar()
         {
             List<Plataforma> plataformas = _repository.Listar();
@@ -110,3 +118,11 @@ namespace Royal_Games.Application.Services
     }
 }
 
+=======
+
+
+
+
+    }
+}
+>>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a

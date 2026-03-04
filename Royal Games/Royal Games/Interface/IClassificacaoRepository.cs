@@ -4,11 +4,11 @@ namespace Royal_Games.Interface
 {
     public interface IClassificacaoRepository
     {
-        List<ClassificacaoIndicativa> Listar();
-        ClassificacaoIndicativa ObterPorId(int id);
+        public List<ClassificacaoIndicativa> Listar();
+        public ClassificacaoIndicativa ObterPorId(int id);
 
         public void Adicionar(ClassificacaoIndicativa classificacao);
         public void Atualizar(ClassificacaoIndicativa classificacao);
-        public void Remover(ClassificacaoIndicativa remover);
+        public void Remover(int id);
     }
 }

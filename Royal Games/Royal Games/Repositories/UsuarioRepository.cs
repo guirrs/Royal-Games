@@ -41,7 +41,7 @@ namespace Royal_Games.Repositories
 
         public void Atualizar(Usuario usuario)
         {
-            Usuario? usuarioBanco = _context.Usuario.FirstOrDefault(usuarioAux => usuarioAux.UsuarioID == usuario.UsuarioID);
+            Usuario? usuarioBanco = _context.Usuario.Find(usuario.UsuarioID);
 
             if (usuarioBanco == null)
                 return;
@@ -50,6 +50,8 @@ namespace Royal_Games.Repositories
             usuarioBanco.Email = usuario.Email; 
             usuarioBanco.Senha = usuario.Senha;
             usuarioBanco.StatusUsuario = usuario.StatusUsuario;
+
+            _context.SaveChanges();
         }
 
         public void Remover(int id)

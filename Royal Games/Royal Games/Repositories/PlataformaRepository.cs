@@ -4,13 +4,18 @@ using Royal_Games.Interface;
 
 namespace Royal_Games.Repositories
 {
+<<<<<<< HEAD
     public class PlataformaRepository : IPlataformaRepository
+=======
+    public class PlataformaRepository: IPlataformaRepository
+>>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a
     {
         private readonly RoyalGamesContext _context;
 
         public PlataformaRepository(RoyalGamesContext context)
         {
             _context = context;
+<<<<<<< HEAD
 
         }
 
@@ -28,6 +33,10 @@ namespace Royal_Games.Repositories
 
 
 
+=======
+        }
+
+>>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a
         public List<Plataforma> Listar()
         {
             return _context.Plataforma.ToList();
@@ -66,7 +75,11 @@ namespace Royal_Games.Repositories
         {
             Plataforma? plataformaBanco = _context.Plataforma.FirstOrDefault(p => p.PlataformaID == id);
 
+<<<<<<< HEAD
             if (plataformaBanco == null)
+=======
+            if(plataformaBanco == null)
+>>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a
             {
                 return;
             }
@@ -84,4 +97,8 @@ namespace Royal_Games.Repositories
 
 
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0e2b3aef78f5fb8108e93690daa27be99f8df15a

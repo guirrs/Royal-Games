@@ -1,10 +1,13 @@
-﻿namespace Royal_Games.DTOs.GeneroDto
+﻿namespace Royal_Games.DTO.GeneroDTo
 {
-    public class LerGeneroDTO
+    public class generoDTO
     {
-
-        public int GeneroID { get; set; }
-        public string Nome { get; set; } = null!;
+           
+     public int GeneroID { get; set; }
+     public string Nome { get; set; } = null!;
 
     }
-}
+  }
+
+
+

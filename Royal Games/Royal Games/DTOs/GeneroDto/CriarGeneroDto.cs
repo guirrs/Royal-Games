@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Royal_Games.DTOs.GeneroDto
+namespace Royal_Games.DTO.GeneroDTo
 {
     public class CriarGeneroDTO
     {
