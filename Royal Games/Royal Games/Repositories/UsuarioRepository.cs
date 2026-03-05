@@ -1,6 +1,8 @@
 ﻿using Royal_Games.Contexts;
 using Royal_Games.Domains;
 using Royal_Games.Interface;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Royal_Games.Repositories
 {
@@ -18,22 +20,22 @@ namespace Royal_Games.Repositories
             return _context.Usuario.ToList();
         }
 
-        public Usuario ObterPorId(int id)
+        public Usuario? ObterPorId(int id)
         {
             return _context.Usuario.Find(id);
         }
 
-        public Usuario ObterPorEmail(string email)
+        public Usuario? ObterPorEmail(string email)
         {
-            return _context.Usuario.FirstOrDefault(usuarioAux => usuarioAux.Email == email);
+            return _context.Usuario.FirstOrDefault(u => u.Email == email);
         }
 
         public bool EmailExiste(string email)
         {
-            return _context.Usuario.Any(usuarioAux  => usuarioAux.Email == email);
+            return _context.Usuario.Any(u => u.Email == email);
         }
 
-        public void Adicionar (Usuario usuario)
+        public void Adicionar(Usuario usuario)
         {
             _context.Usuario.Add(usuario);
             _context.SaveChanges();
@@ -42,12 +44,11 @@ namespace Royal_Games.Repositories
         public void Atualizar(Usuario usuario)
         {
             Usuario? usuarioBanco = _context.Usuario.Find(usuario.UsuarioID);
-
             if (usuarioBanco == null)
-                return;
+                throw new Exception("Usuário não encontrado para atualização.");
 
             usuarioBanco.Nome = usuario.Nome;
-            usuarioBanco.Email = usuario.Email; 
+            usuarioBanco.Email = usuario.Email;
             usuarioBanco.Senha = usuario.Senha;
             usuarioBanco.StatusUsuario = usuario.StatusUsuario;
 
@@ -56,9 +57,9 @@ namespace Royal_Games.Repositories
 
         public void Remover(int id)
         {
-        Usuario? usuario = _context.Usuario.Find(id);
-
-            if (usuario == null) return;
+            Usuario? usuario = _context.Usuario.Find(id);
+            if (usuario == null)
+                throw new Exception("Usuário não encontrado para remoção.");
 
             _context.Usuario.Remove(usuario);
             _context.SaveChanges();

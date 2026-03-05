@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Royal_Games.Application.Services;
 using Royal_Games.DTOs.ClassificacaoDto;
-using Royal_Games.DTOs.UsuarioDTO;
+using Royal_Games.DTOs.LerUsuarioDTO;
 using Royal_Games.Exceptions;
 
 namespace Royal_Games.Controllers

@@ -18,6 +18,13 @@ builder.Services.AddScoped<GeneroService>();
 builder.Services.AddScoped<IPlataformaRepository, PlataformaRepository>();
 builder.Services.AddScoped<PlataformaService>();
 
+
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<UsuarioService>();
+
+
+
+
 // 3?? Outros serviços
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
