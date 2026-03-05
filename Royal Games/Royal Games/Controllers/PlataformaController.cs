@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Royal_Games.Application.Services;
+using Royal_Games.Domains;
 using Royal_Games.DTO.PlataformaDTo;
-using Royal_Games.DTOs.GeneroDto;
-using Royal_Games.DTOs.PlataformaDto;
 using Royal_Games.Exceptions;
+using System.Collections.Generic;
 
 namespace Royal_Games.Controllers
 {
@@ -12,7 +11,6 @@ namespace Royal_Games.Controllers
     [ApiController]
     public class PlataformaController : ControllerBase
     {
-
         private readonly PlataformaService _service;
 
         public PlataformaController(PlataformaService service)
@@ -23,13 +21,12 @@ namespace Royal_Games.Controllers
         [HttpGet]
         public ActionResult<List<LerPlataformaDTO>> Listar()
         {
-            List<LerPlataformaDTO> plataforma = _service.Listar();
-
-            return Ok(plataforma);
+            List<LerPlataformaDTO> plataformas = _service.Listar();
+            return Ok(plataformas);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<LerGeneroDTO> ObterPorId(int id)
+        public ActionResult<LerPlataformaDTO> ObterPorId(int id)
         {
             try
             {
@@ -43,48 +40,45 @@ namespace Royal_Games.Controllers
         }
 
         [HttpPost]
-        public ActionResult<LerPlataformaDTO> Adicionar(CriarPlataformaDTO PlataformaDto)
+        public ActionResult Adicionar(CriarPlataformaDTO plataformaDto)
         {
             try
             {
-                 _service.Cadastrar(PlataformaDto);
+                _service.Cadastrar(plataformaDto); 
                 return NoContent();
             }
             catch (DomainException ex)
             {
-                throw new DomainException(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
-        [HttpPut]
-        public ActionResult Atualizar(int id, LerPlataformaDTO PlataformaDto)
+        [HttpPut("{id}")]
+        public ActionResult Atualizar(int id, LerPlataformaDTO plataformaDto)
         {
             try
             {
-                 _service.Atualizar(id, PlataformaDto);
+                _service.Atualizar(id, plataformaDto);
                 return NoContent();
             }
             catch (DomainException ex)
             {
-                throw new DomainException(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
-        [HttpDelete]
-        public ActionResult<LerPlataformaDTO> Remover(int id)
+        [HttpDelete("{id}")]
+        public ActionResult Remover(int id)
         {
             try
             {
-                 _service.Remover(id);
+                _service.Remover(id);
                 return NoContent();
             }
             catch (DomainException ex)
             {
-                throw new DomainException(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
     }
 }
-
-    
-

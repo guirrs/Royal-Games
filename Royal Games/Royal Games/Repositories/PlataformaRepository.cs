@@ -25,7 +25,8 @@ namespace Royal_Games.Repositories
                 return _context.Plataforma.Any(p => p.Nome == nome && p.PlataformaID != plataformaId.Value);
             }
         }
-        }
+    
+
 
         public List<Plataforma> Listar()
         {
@@ -66,12 +67,13 @@ namespace Royal_Games.Repositories
             Plataforma? plataformaBanco = _context.Plataforma.FirstOrDefault(p => p.PlataformaID == id);
 
             if (plataformaBanco == null)
-            if(plataformaBanco == null)
-            {
-                return;
-            }
+                if (plataformaBanco == null)
+                {
+                    return;
+                }
 
             _context.Plataforma.Remove(plataformaBanco);
             _context.SaveChanges();
         }
     }
+}

@@ -9,11 +9,9 @@ namespace Royal_Games.Interface
         
         bool GeneroExiste(string nome, int? GeneroID = null );
         void Cadastrar(Genero genero);
-        void atualizar(Genero genero);
+        void Atualizar(Genero genero);
         void Deletar(int id);
 
-        void Cadastrar(Genero genero);
-        void atualizar(Genero genero);
-        void Deletar(int id);
+       
     }
 }

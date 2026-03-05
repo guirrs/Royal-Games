@@ -43,7 +43,7 @@ namespace Royal_Games.Repositories
             _context.SaveChanges();
         }
 
-        public void atualizar(Genero genero)
+        public void Atualizar(Genero genero)
         {
             Genero? generoBanco = _context.Genero.FirstOrDefault(g => g.GeneroID == genero.GeneroID);
 
@@ -54,7 +54,6 @@ namespace Royal_Games.Repositories
 
             _context.Genero.Update(genero);
             _context.SaveChanges();
-
         }
 
         public void Deletar(int id)

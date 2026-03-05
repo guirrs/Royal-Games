@@ -9,6 +9,6 @@ namespace Royal_Games.Interface
 
         public void Adicionar(ClassificacaoIndicativa classificacao);
         public void Atualizar(ClassificacaoIndicativa classificacao);
-        public void Remover(int id);
+        public void Remover(ClassificacaoIndicativa classificacao);
     }
 }

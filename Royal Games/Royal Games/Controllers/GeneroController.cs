@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Royal_Games.Application.Services;
-using Royal_Games.DTOs.GeneroDto;
+using Royal_Games.DTO.GeneroDTo;
 using Royal_Games.Exceptions;
+using System.Collections.Generic;
 
 namespace Royal_Games.Controllers
 {
@@ -12,7 +12,7 @@ namespace Royal_Games.Controllers
     {
         private readonly GeneroService _service;
 
-    public  GeneroController(GeneroService service)
+        public GeneroController(GeneroService service)
         {
             _service = service;
         }
@@ -20,9 +20,8 @@ namespace Royal_Games.Controllers
         [HttpGet]
         public ActionResult<List<LerGeneroDTO>> Listar()
         {
-            List<LerGeneroDTO> genero = _service.Listar();
-
-            return Ok(genero);
+            List<LerGeneroDTO> generos = _service.Listar();
+            return Ok(generos);
         }
 
         [HttpGet("{id}")]
@@ -40,35 +39,35 @@ namespace Royal_Games.Controllers
         }
 
         [HttpPost]
-        public ActionResult<LerGeneroDTO> Adicionar(CriarGeneroDTO GeneroDto)
+        public ActionResult Adicionar(CriarGeneroDTO generoDto)
         {
             try
             {
-                _service.Cadastrar(GeneroDto);
+                _service.Cadastrar(generoDto);
                 return NoContent();
             }
             catch (DomainException ex)
             {
-                throw new DomainException(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
-        [HttpPut]
-        public ActionResult Atualizar(int id, LerGeneroDTO GeneroDTO)
+        [HttpPut("{id}")]
+        public ActionResult Atualizar(int id, LerGeneroDTO generoDTO)
         {
             try
             {
-               _service.Atualizar(id, GeneroDTO);
+                _service.Atualizar(id, generoDTO);
                 return NoContent();
             }
             catch (DomainException ex)
             {
-                throw new DomainException(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
-        [HttpDelete]
-        public ActionResult<LerGeneroDTO> Remover(int id)
+        [HttpDelete("{id}")]
+        public ActionResult Remover(int id)
         {
             try
             {
@@ -77,7 +76,7 @@ namespace Royal_Games.Controllers
             }
             catch (DomainException ex)
             {
-                throw new DomainException(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
     }
