@@ -40,6 +40,20 @@ namespace Royal_Games.Repositories
                 .FirstOrDefault();
         }
 
+        public List<Jogo> ObterPorPlataforma(string plataformaNome)
+        {
+            List<Jogo> jogos = _context.Jogo.Where(jogoAux => jogoAux.Plataforma.Any(j => j.Nome == plataformaNome)).ToList();
+
+            return jogos;
+        }
+
+        public List<Jogo> ObterPorGenero(string generoNome)
+        {
+            List<Jogo> jogos = _context.Jogo.Where(jogoAux => jogoAux.Genero.Any(j => j.Nome == generoNome)).ToList();
+
+            return jogos;
+        }
+
         public void Adicionar(Jogo jogo, List<int> generosId, List<int> plataformaId, int classificacaoId)
         {
             var generos = _context.Genero.Where(g => generosId.Contains(g.GeneroID)).ToList();

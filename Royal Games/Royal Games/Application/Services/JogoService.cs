@@ -89,28 +89,25 @@ namespace Royal_Games.Application.Services
                 throw new DomainException("Produto deve ter uma classificação.");
         }
 
+        public List<LerJogoDto> ObterPorPlataforma (string plataforma)
+        {
+            List<Jogo> jogos = _repository.ObterPorPlataforma(plataforma);
+            List<LerJogoDto> jogosDto = jogos.Select(jogoAux => LerDto(jogoAux)).ToList();
+
+            return jogosDto;
+        }
+
+        public List<LerJogoDto> ObterPorGenero(string genero)
+        {
+            List<Jogo> jogos = _repository.ObterPorGenero(genero);
+            List<LerJogoDto> jogosDto = jogos.Select(jogoAux => LerDto(jogoAux)).ToList();
+
+            return jogosDto;
+        }
+
         public LerJogoDto Adicionar(CriarJogoDto jogoDto, int usuarioId)
         {
-            if (string.IsNullOrWhiteSpace(jogoDto.Nome))
-                throw new DomainException("Nome é obrigatório.");
-
-            if (jogoDto.Preco < 0)
-                throw new DomainException("Preço deve ser maior que zero.");
-
-            if (string.IsNullOrWhiteSpace(jogoDto.Descricao))
-                throw new DomainException("Descrição é obrigatória.");
-
-            if (jogoDto.Imagem == null || jogoDto.Imagem.Length == 0)
-                throw new DomainException("Imagem é obrigatória.");
-
-            if (jogoDto.GenerosId == null || !jogoDto.GenerosId.Any())
-                throw new DomainException("Jogo deve ter ao menos um gênero.");
-
-            if (jogoDto.PlataformaId == null || !jogoDto.PlataformaId.Any())
-                throw new DomainException("Produto deve ter ao menos uma plataforma.");
-
-            int classificacaoId = jogoDto.ClassificacaoId
-                ?? throw new DomainException("Produto deve ter uma classificação.");
+            ValidarCadastro(jogoDto);
 
             Jogo jogo = new Jogo
             {
@@ -122,7 +119,7 @@ namespace Royal_Games.Application.Services
                 UsuarioID = usuarioId
             };
 
-            _repository.Adicionar(jogo, jogoDto.GenerosId, jogoDto.PlataformaId, classificacaoId);
+            _repository.Adicionar(jogo, jogoDto.GenerosId, jogoDto.PlataformaId, jogo.ClassificacaoIndicativaID);
 
             return LerDto(jogo);
         }

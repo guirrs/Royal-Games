@@ -10,6 +10,9 @@ namespace Royal_Games.Interface
 
         byte[] ObterImagem(int id);
 
+        List<Jogo> ObterPorPlataforma(string plataforma);
+        List<Jogo> ObterPorGenero(string genero);
+
         void Adicionar(Jogo jogo, List<int> generosId, List<int> plataformaId, int classificacaoId);
 
         void Atualizar(Jogo jogo, List<int> generosId, List<int> plataformaId, int classificacaoId);

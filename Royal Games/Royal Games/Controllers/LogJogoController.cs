@@ -22,7 +22,7 @@ namespace Royal_Games.Controllers
             return Ok(_service.Listar());
         }
 
-        [HttpGet("produto/{id}")]
+        [HttpGet("jogo/{id}")]
         public ActionResult ListarProduto(int id)
         {
             try

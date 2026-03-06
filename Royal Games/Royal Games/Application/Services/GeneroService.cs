@@ -1,7 +1,7 @@
 ﻿using Royal_Games.Domains;
-using Royal_Games.DTO.GeneroDTo;
 using Royal_Games.Exceptions;
 using Royal_Games.Interface;
+using Royal_Games.DTO.GeneroDTo;
 using System.Collections.Generic;
 using System.Linq;
 

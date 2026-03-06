@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Royal_Games.Application.Services;
 using Royal_Games.Domains;
+using Royal_Games.DTO;
 using Royal_Games.DTO.PlataformaDTo;
 using Royal_Games.Exceptions;
 using System.Collections.Generic;

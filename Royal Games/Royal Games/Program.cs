@@ -9,25 +9,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-
-// 2?? Registrar Repositories e Services
-builder.Services.AddScoped<IGeneroRepository, GeneroRepository>();
-builder.Services.AddScoped<GeneroService>();
-
-builder.Services.AddScoped<IPlataformaRepository, PlataformaRepository>();
-builder.Services.AddScoped<PlataformaService>();
-
-
-builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-builder.Services.AddScoped<UsuarioService>();
-
-builder.Services.AddScoped<IClassificacaoRepository, ClassificacaoRepository>();
-builder.Services.AddScoped<ClassificacaoService>();
-
-
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

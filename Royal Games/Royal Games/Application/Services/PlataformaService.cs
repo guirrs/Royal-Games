@@ -1,5 +1,6 @@
 
 using Royal_Games.Domains;
+using Royal_Games.DTO;
 using Royal_Games.DTO.PlataformaDTo;
 using Royal_Games.Exceptions;
 using Royal_Games.Interface;

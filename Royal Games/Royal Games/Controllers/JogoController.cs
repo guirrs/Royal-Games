@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Royal_Games.Application.Services;
 using Royal_Games.DTOs.JogoDto;
 using Royal_Games.Exceptions;
@@ -40,89 +41,64 @@ public class JogoController : ControllerBase
             LerJogoDto jogo = _service.ObterPorId(id);
             return Ok(jogo);
         }
-<<<<<<< HEAD
         catch (DomainException ex)
         {
             return BadRequest(ex.Message);
-=======
-
-        [HttpGet("imagem/{id}")]
-        public ActionResult ObterImagem(int id)
-        {
-            try
-            {
-                var imagem = _service.ObterImagem(id);
-                return File(imagem, "imagem/jpeg");
-            }
-            catch (DomainException ex)
-            {
-                return NotFound(ex.Message);
-            }
         }
+    }
 
-        [HttpPost]
-        [Consumes("Multipart/form-data")]
-        [Authorize]
-        public ActionResult<LerJogoDto> Adicionar([FromForm] CriarJogoDto jogoDto)
+    [HttpGet("imagem/{id}")]
+    public ActionResult ObterImagem(int id)
+    {
+        try
         {
-            try
-            {
-                int userId = ObterUsuarioLogado();
-
-                _service.Adicionar(jogoDto, userId);
-
-                return Created();
-            }
-            catch (DomainException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var imagem = _service.ObterImagem(id);
+            return File(imagem, "imagem/jpeg");
         }
-
-        [HttpPut]
-        [Consumes("Multipart/form-data")]
-        [Authorize]
-        public ActionResult Atualizar(int id, [FromForm] AtualizarJogoDto jogoDto)
+        catch (DomainException ex)
         {
-            try
-            {
-                _service.Atualizar(jogoDto, id);
-                return NoContent();
-            }
-            catch (DomainException ex)
-            {
-                return BadRequest(ex.Message);
-            }
->>>>>>> 25eaf762c329b2dc1ad1d7fa0e0fc26cfe65113e
+            return NotFound(ex.Message);
         }
+    }
 
-        [HttpDelete("{id}")]
-        [Authorize]
-        public ActionResult Remover(int id)
+    [HttpGet("plataforma/{plataforma}")]
+    public ActionResult<List<LerJogoDto>> ObterPorPlataforma(string plataforma)
+    {
+        try
         {
-            try
-            {
-                _service.Remover(id);
-                return NoContent();
-            }
-            catch (DomainException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(_service.ObterPorPlataforma(plataforma));
         }
+        catch (DomainException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 
-
+    [HttpGet("genero/{genero}")]
+    public ActionResult<List<LerJogoDto>> ObterPorGenero(string genero)
+    {
+        try
+        {
+            return Ok(_service.ObterPorGenero(genero));
+        }
+        catch (DomainException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpPost]
+    [Consumes("Multipart/form-data")]
+    [Authorize]
     public ActionResult<LerJogoDto> Adicionar([FromForm] CriarJogoDto jogoDto)
     {
         try
         {
             int userId = ObterUsuarioLogado();
-            LerJogoDto jogoCriado = _service.Adicionar(jogoDto, userId);
 
-            return CreatedAtAction(nameof(ObterPorId), new { id = jogoCriado.Nome }, jogoCriado);
+            _service.Adicionar(jogoDto, userId);
+
+            return Created();
         }
         catch (DomainException ex)
         {
@@ -130,7 +106,9 @@ public class JogoController : ControllerBase
         }
     }
 
-    [HttpPut("{id}")]
+    [HttpPut]
+    [Consumes("Multipart/form-data")]
+    [Authorize]
     public ActionResult Atualizar(int id, [FromForm] AtualizarJogoDto jogoDto)
     {
         try
@@ -144,18 +122,19 @@ public class JogoController : ControllerBase
         }
     }
 
-[HttpDelete("{id}")]
-public ActionResult Deletar(int id)
-{
-    try
+    [HttpDelete("{id}")]
+    [Authorize]
+    public ActionResult Remover(int id)
     {
-        _service.Remover(id);
-        return NoContent();
+        try
+        {
+            _service.Remover(id);
+            return NoContent();
+        }
+        catch (DomainException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
-    catch (DomainException ex)
-    {
-        return BadRequest(ex.Message);
-    }
-}
 
 }
