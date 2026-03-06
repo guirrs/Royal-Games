@@ -53,6 +53,20 @@ namespace Royal_Games.Controllers
             }
         }
 
+        [HttpGet("imagem/{id}")]
+        public ActionResult ObterImagem(int id)
+        {
+            try
+            {
+                var imagem = _service.ObterImagem(id);
+                return File(imagem, "imagem/jpeg");
+            }
+            catch (DomainException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
         [HttpPost]
         [Consumes("Multipart/form-data")]
         [Authorize]
@@ -62,7 +76,7 @@ namespace Royal_Games.Controllers
             {
                 int userId = ObterUsuarioLogado();
 
-                _service.Adicionar(jogoDto,userId);
+                _service.Adicionar(jogoDto, userId);
 
                 return Created();
             }
@@ -87,5 +101,22 @@ namespace Royal_Games.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public ActionResult Remover(int id)
+        {
+            try
+            {
+                _service.Remover(id);
+                return NoContent();
+            }
+            catch (DomainException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
     }
 }
