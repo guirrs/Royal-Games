@@ -1,85 +1,75 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Royal_Games.Application.Services;
 using Royal_Games.DTOs.ClassificacaoDto;
-using Royal_Games.DTOs.LerUsuarioDTO;
 using Royal_Games.Exceptions;
 
-namespace Royal_Games.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class ClassificacaoController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ClassificacaoController : ControllerBase
+    private readonly ClassificacaoService _service;
+
+    public ClassificacaoController(ClassificacaoService service)
     {
-        private readonly ClassificacaoService _service;
+        _service = service;
+    }
 
-        ClassificacaoController(ClassificacaoService service)
+    [HttpGet]
+    public ActionResult<List<LerClassificacaoDto>> Listar()
+    {
+        return Ok(_service.Listar());
+    }
+
+    [HttpGet("{id}")]
+    public ActionResult<LerClassificacaoDto> ObterPorId(int id)
+    {
+        try
         {
-            _service = service;
+            return Ok(_service.ObterPorId(id));
         }
-
-        [HttpGet]
-        public ActionResult<List<LerClassificacaoDto>> Listar()
+        catch (DomainException ex)
         {
-            List<LerClassificacaoDto> classificacao = _service.Listar();
-
-            return Ok(classificacao);
+            return BadRequest(ex.Message);
         }
+    }
 
-        [HttpGet("{id}")]
-        public ActionResult<LerClassificacaoDto> ObterPorId(int id)
+    [HttpPost]
+    public ActionResult<LerClassificacaoDto> Adicionar(CriarClassificacaoDto dto)
+    {
+        try
         {
-            try
-            {
-                LerClassificacaoDto classificacao = _service.ObterPorId(id);
-                return Ok(classificacao);
-            }
-            catch (DomainException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(_service.Adicionar(dto));
         }
-
-        [HttpPost]
-        public ActionResult<LerClassificacaoDto> Adicionar(CriarGeneroDto classificacaoDto)
+        catch (DomainException ex)
         {
-            try
-            {
-                LerClassificacaoDto classificacao = _service.Adicionar(classificacaoDto);
-                return Ok(classificacao);
-            }
-            catch (DomainException ex)
-            {
-                throw new DomainException(ex.Message);
-            }
+            return BadRequest(ex.Message);
         }
+    }
 
-        [HttpPut]
-        public ActionResult<LerClassificacaoDto> Atualizar(CriarGeneroDto classificacaoDto, int id)
+    [HttpPut("{id}")]
+    public ActionResult<LerClassificacaoDto> Atualizar(int id, CriarClassificacaoDto dto)
+    {
+        try
         {
-            try
-            {
-                LerClassificacaoDto classificacao = _service.Atualizar(classificacaoDto, id);
-                return Ok(classificacao);
-            }
-            catch (DomainException ex)
-            {
-                throw new DomainException(ex.Message);
-            }
+            return Ok(_service.Atualizar(dto, id));
         }
-
-        [HttpDelete]
-        public ActionResult<LerClassificacaoDto> Remover(int id)
+        catch (DomainException ex)
         {
-            try
-            {
-                LerClassificacaoDto classificacao = _service.Remover(id);
-                return NoContent();
-            }
-            catch (DomainException ex)
-            {
-                throw new DomainException(ex.Message);
-            }
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult Remover(int id)
+    {
+        try
+        {
+            _service.Remover(id);
+            return NoContent();
+        }
+        catch (DomainException ex)
+        {
+            return BadRequest(ex.Message);
         }
     }
 }

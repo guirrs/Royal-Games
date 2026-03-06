@@ -1,4 +1,5 @@
-﻿using Royal_Games.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using Royal_Games.Contexts;
 using Royal_Games.Domains;
 using Royal_Games.Interface;
 
@@ -18,7 +19,7 @@ namespace Royal_Games.Repositories
             return _context.ClassificacaoIndicativa.ToList();
         }
 
-        public ClassificacaoIndicativa ObterPorId(int id)
+        public ClassificacaoIndicativa? ObterPorId(int id)
         {
             return _context.ClassificacaoIndicativa.Find(id);
         }
@@ -28,6 +29,7 @@ namespace Royal_Games.Repositories
             _context.ClassificacaoIndicativa.Add(classificacao);
             _context.SaveChanges();
         }
+
         public void Remover(ClassificacaoIndicativa classificacao)
         {
             _context.ClassificacaoIndicativa.Remove(classificacao);
@@ -36,17 +38,17 @@ namespace Royal_Games.Repositories
 
         public void Atualizar(ClassificacaoIndicativa classificacao)
         {
-            ClassificacaoIndicativa? classificacaoBanco = _context.ClassificacaoIndicativa.Find
-                (classificacao.ClassificacaoIndicativaID);
+            ClassificacaoIndicativa? classificacaoBanco =
+                _context.ClassificacaoIndicativa.Find(classificacao.ClassificacaoIndicativaID);
 
-            if(classificacaoBanco == null)
+            if (classificacaoBanco == null)
             {
-                return;
+                throw new Exception("Classificação não encontrada.");
             }
 
             classificacaoBanco.Faixa = classificacao.Faixa;
 
-            _context.SaveChanges ();
+            _context.SaveChanges();
         }
     }
 }

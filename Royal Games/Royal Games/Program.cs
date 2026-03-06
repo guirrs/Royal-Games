@@ -22,6 +22,8 @@ builder.Services.AddScoped<PlataformaService>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<UsuarioService>();
 
+builder.Services.AddScoped<IClassificacaoRepository, ClassificacaoRepository>();
+builder.Services.AddScoped<ClassificacaoService>();
 
 
 

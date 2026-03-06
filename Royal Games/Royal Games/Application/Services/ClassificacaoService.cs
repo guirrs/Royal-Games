@@ -2,7 +2,6 @@
 using Royal_Games.DTOs.ClassificacaoDto;
 using Royal_Games.Exceptions;
 using Royal_Games.Interface;
-using Royal_Games.Repositories;
 
 namespace Royal_Games.Application.Services
 {
@@ -17,35 +16,35 @@ namespace Royal_Games.Application.Services
 
         public static LerClassificacaoDto LerDto(ClassificacaoIndicativa classificacao)
         {
-            LerClassificacaoDto classificacaoDto = new LerClassificacaoDto
+            return new LerClassificacaoDto
             {
                 Id = classificacao.ClassificacaoIndicativaID,
                 Faixa = classificacao.Faixa
             };
-
-            return classificacaoDto;
         }
 
         public List<LerClassificacaoDto> Listar()
         {
             List<ClassificacaoIndicativa> classificacaoBanco = _repository.Listar();
-            List<LerClassificacaoDto> classificacaoDto = classificacaoBanco.Select
-                (classificacaoAux => LerDto(classificacaoAux)).ToList();
-            return classificacaoDto;
+
+            return classificacaoBanco
+                .Select(c => LerDto(c))
+                .ToList();
         }
 
         public LerClassificacaoDto ObterPorId(int id)
         {
             ClassificacaoIndicativa? classificacao = _repository.ObterPorId(id);
 
-            if(classificacao == null)
+            if (classificacao == null)
             {
-                throw new DomainException("Classificação Inexistente");
+                throw new DomainException("Classificação inexistente");
             }
 
             return LerDto(classificacao);
         }
-        public LerClassificacaoDto Adicionar(CriarGeneroDto classificacaoDto)
+
+        public LerClassificacaoDto Adicionar(CriarClassificacaoDto classificacaoDto)
         {
             ClassificacaoIndicativa classificacao = new ClassificacaoIndicativa
             {
@@ -57,23 +56,25 @@ namespace Royal_Games.Application.Services
             return LerDto(classificacao);
         }
 
-        public LerClassificacaoDto Atualizar(CriarGeneroDto classificacaoDto, int id)
+        public LerClassificacaoDto Atualizar(CriarClassificacaoDto classificacaoDto, int id)
         {
             ClassificacaoIndicativa? classificacao = _repository.ObterPorId(id);
 
-            if( classificacao == null)
+            if (classificacao == null)
             {
                 throw new DomainException("Classificação inexistente");
             }
+
+            classificacao.Faixa = classificacaoDto.Faixa;
 
             _repository.Atualizar(classificacao);
 
             return LerDto(classificacao);
         }
 
-        public LerClassificacaoDto Remover (int id)
+        public LerClassificacaoDto Remover(int id)
         {
-            ClassificacaoIndicativa? classificacao = _repository.ObterPorId (id);
+            ClassificacaoIndicativa? classificacao = _repository.ObterPorId(id);
 
             if (classificacao == null)
             {
@@ -81,6 +82,7 @@ namespace Royal_Games.Application.Services
             }
 
             _repository.Remover(classificacao);
+
             return LerDto(classificacao);
         }
     }
