@@ -54,20 +54,19 @@ namespace Royal_Games.Repositories
             return jogos;
         }
 
-        public void Adicionar(Jogo jogo, List<int> generosId, List<int> plataformaId, int classificacaoId)
+        public void Adicionar(Jogo jogo, List<int> generosId, List<int> plataformaId)
         {
             var generos = _context.Genero.Where(g => generosId.Contains(g.GeneroID)).ToList();
             var plataformas = _context.Plataforma.Where(p => plataformaId.Contains(p.PlataformaID)).ToList();
 
             jogo.Genero = generos;
             jogo.Plataforma = plataformas;
-            jogo.ClassificacaoIndicativaID = classificacaoId;
 
             _context.Jogo.Add(jogo);
             _context.SaveChanges();
         }
 
-        public void Atualizar(Jogo jogo, List<int> generosId, List<int> plataformaId, int classificacaoId)
+        public void Atualizar(Jogo jogo, List<int> generosId, List<int> plataformaId)
         {
             var jogoExistente = _context.Jogo
                 .Include(j => j.Genero)
@@ -83,7 +82,7 @@ namespace Royal_Games.Repositories
             jogoExistente.Imagem = jogo.Imagem;
             jogoExistente.DataLancamento = jogo.DataLancamento;
             jogoExistente.StatusJogo = jogo.StatusJogo;
-            jogoExistente.ClassificacaoIndicativaID = classificacaoId;
+            jogoExistente.ClassificacaoIndicativaID = jogo.ClassificacaoIndicativaID;
 
             var generos = _context.Genero.Where(g => generosId.Contains(g.GeneroID)).ToList();
             jogoExistente.Genero.Clear();

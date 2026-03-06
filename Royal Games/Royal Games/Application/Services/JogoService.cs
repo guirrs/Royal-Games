@@ -31,7 +31,6 @@ namespace Royal_Games.Application.Services
                 Plataforma = jogo.Plataforma?.Select(p => p.Nome).ToList(),
 
                 ClassificacaoId = jogo.ClassificacaoIndicativaID,
-                Classificacao = jogo.ClassificacaoIndicativa?.Faixa
             };
         }
 
@@ -86,7 +85,7 @@ namespace Royal_Games.Application.Services
                 throw new DomainException("Produto deve ter ao menos uma plataforma.");
 
             if (jogoDto.ClassificacaoId == null)
-                throw new DomainException("Produto deve ter uma classificação.");
+                throw new DomainException("Produto deve ter ao menos uma classificação.");
         }
 
         public List<LerJogoDto> ObterPorPlataforma (string plataforma)
@@ -116,10 +115,11 @@ namespace Royal_Games.Application.Services
                 Preco = jogoDto.Preco,
                 Imagem = ImagemParaBytes.ConverterImagem(jogoDto.Imagem),
                 StatusJogo = true,
-                UsuarioID = usuarioId
+                UsuarioID = usuarioId,
+                ClassificacaoIndicativaID = jogoDto.ClassificacaoId
             };
 
-            _repository.Adicionar(jogo, jogoDto.GenerosId, jogoDto.PlataformaId, jogo.ClassificacaoIndicativaID);
+            _repository.Adicionar(jogo, jogoDto.GenerosId, jogoDto.PlataformaId);
 
             return LerDto(jogo);
         }
@@ -163,7 +163,7 @@ namespace Royal_Games.Application.Services
                 jogo.StatusJogo = jogoDto.StatusJogo.Value;
             }
 
-    _repository.Atualizar(jogo, jogoDto.GeneroId, jogoDto.PlataformaId, jogoDto.ClassificacaoId);
+    _repository.Atualizar(jogo, jogoDto.GeneroId, jogoDto.PlataformaId);
             return LerDto(jogo);
         }
     }

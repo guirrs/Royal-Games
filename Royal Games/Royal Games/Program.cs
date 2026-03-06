@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Royal_Games.Aplication.Services;
+using Royal_Games.Application.Autenticacao;
 using Royal_Games.Application.Services;
 using Royal_Games.Contexts;
 using Royal_Games.Interface;
@@ -40,6 +42,10 @@ builder.Services.AddScoped<JogoService>();
 // Log Jogo
 builder.Services.AddScoped<ILogJogoRepository, LogJogoRepository>();
 builder.Services.AddScoped<LogJogoService>();
+
+//jwt
+builder.Services.AddScoped<GeradorTokenJwt>();
+builder.Services.AddScoped<AutenticacaoService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

@@ -13,9 +13,9 @@ namespace Royal_Games.Interface
         List<Jogo> ObterPorPlataforma(string plataforma);
         List<Jogo> ObterPorGenero(string genero);
 
-        void Adicionar(Jogo jogo, List<int> generosId, List<int> plataformaId, int classificacaoId);
+        void Adicionar(Jogo jogo, List<int> generosId, List<int> plataformaId);
 
-        void Atualizar(Jogo jogo, List<int> generosId, List<int> plataformaId, int classificacaoId);
+        void Atualizar(Jogo jogo, List<int> generosId, List<int> plataformaId);
 
         void Remover(int id);
 

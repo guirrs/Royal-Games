@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Royal_Games.DTOs.AutenticacaoDto;
 using Royal_Games.Exceptions;
-using Royal_Games.Application.Services;
-using VHBurguer.Aplication.Services;
+using Royal_Games.Aplication.Services;
 
 
-namespace VHBurguer.Controllers
+namespace Royal_Games.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

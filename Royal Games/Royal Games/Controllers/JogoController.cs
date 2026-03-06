@@ -14,7 +14,6 @@ public class JogoController : ControllerBase
     {
         _service = service;
     }
-
     private int ObterUsuarioLogado()
     {
         string? idTexto = User.FindFirstValue(ClaimTypes.NameIdentifier);
