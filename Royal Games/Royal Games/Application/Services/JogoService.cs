@@ -2,55 +2,55 @@
 using Royal_Games.Domains;
 using Royal_Games.DTOs.JogoDto;
 using Royal_Games.Exceptions;
-using Royal_Games.Repositories;
+using Royal_Games.Interface;
 
 namespace Royal_Games.Application.Services
 {
     public class JogoService
     {
-        public readonly JogoRepository _repository;
+        private readonly IJogoRepository _repository;
 
-        public JogoService(JogoRepository repository)
+        public JogoService(IJogoRepository repository)
         {
             _repository = repository;
         }
 
         public LerJogoDto LerDto(Jogo jogo)
         {
-            LerJogoDto jogoDto = new LerJogoDto
+            return new LerJogoDto
             {
                 Nome = jogo.Nome,
                 Descricao = jogo.Descricao,
                 Preco = jogo.Preco,
-                GenerosId = jogo.Genero.Select(jogoAux => jogoAux.GeneroID).ToList(),
-                Generos = jogo.Genero.Select(jogoAux => jogoAux.Nome).ToList(),
-                PlataformaId = jogo.Plataforma.Select(jogoAux => jogoAux.PlataformaID).ToList(),
-                Plataforma = jogo.Plataforma.Select(jogoAux => jogoAux.Nome).ToList(),
-                ClassificacaoId = jogo.ClassificacaoIndicativa.ClassificacaoIndicativaID,
-                Classificacao = jogo.ClassificacaoIndicativa.Faixa,
                 StatusJogo = jogo.StatusJogo,
+
+                GenerosId = jogo.Genero?.Select(g => g.GeneroID).ToList(),
+                Generos = jogo.Genero?.Select(g => g.Nome).ToList(),
+
+                PlataformaId = jogo.Plataforma?.Select(p => p.PlataformaID).ToList(),
+                Plataforma = jogo.Plataforma?.Select(p => p.Nome).ToList(),
+
+                ClassificacaoId = jogo.ClassificacaoIndicativaID,
+                Classificacao = jogo.ClassificacaoIndicativa?.Faixa
             };
-            return jogoDto;
         }
 
         public List<LerJogoDto> Listar()
         {
             List<Jogo> jogos = _repository.Listar();
-            List<LerJogoDto> jogosDto = jogos.Select(jogosAux => LerDto(jogosAux)).ToList();
-
-            return jogosDto;
+            return jogos.Select(j => LerDto(j)).ToList();
         }
 
         public LerJogoDto ObterPorId(int id)
         {
-            Jogo? jogoDto = _repository.ObterPorId(id);
+            Jogo? jogo = _repository.ObterPorId(id);
 
-            if(jogoDto == null)
+            if (jogo == null)
             {
                 throw new DomainException("Esse jogo não existe");
             }
 
-            return LerDto(jogoDto);
+            return LerDto(jogo);
         }
 
         public byte[] ObterImagem(int id)
@@ -68,42 +68,49 @@ namespace Royal_Games.Application.Services
         public static void ValidarCadastro(CriarJogoDto jogoDto)
         {
             if (string.IsNullOrWhiteSpace(jogoDto.Nome))
-            {
-                throw new DomainException("Nome é obrigatório;");
-            }
+                throw new DomainException("Nome é obrigatório.");
 
             if (jogoDto.Preco < 0)
-            {
-                throw new DomainException("Preco deve ser maior que zero;");
-            }
+                throw new DomainException("Preço deve ser maior que zero.");
 
             if (string.IsNullOrWhiteSpace(jogoDto.Descricao))
-            {
                 throw new DomainException("Descrição é obrigatória.");
-            }
 
             if (jogoDto.Imagem == null || jogoDto.Imagem.Length == 0)
-            {
                 throw new DomainException("Imagem é obrigatória.");
-            }
 
-            if (jogoDto.GenerosId == null || jogoDto.GenerosId.Count() == 0)
-            {
-                throw new DomainException("Jogo deve ter ao menos um genero.");
-            }
-            if (jogoDto.PlataformaId == null || jogoDto.PlataformaId.Count() == 0)
-            {
+            if (jogoDto.GenerosId == null || !jogoDto.GenerosId.Any())
+                throw new DomainException("Jogo deve ter ao menos um gênero.");
+
+            if (jogoDto.PlataformaId == null || !jogoDto.PlataformaId.Any())
                 throw new DomainException("Produto deve ter ao menos uma plataforma.");
-            }
+
             if (jogoDto.ClassificacaoId == null)
-            {
-                throw new DomainException("Produto deve ter ao menos uma classificacao.");
-            }
+                throw new DomainException("Produto deve ter uma classificação.");
         }
 
-        public void Adicionar(CriarJogoDto jogoDto, int usuarioId)
+        public LerJogoDto Adicionar(CriarJogoDto jogoDto, int usuarioId)
         {
-            ValidarCadastro(jogoDto);
+            if (string.IsNullOrWhiteSpace(jogoDto.Nome))
+                throw new DomainException("Nome é obrigatório.");
+
+            if (jogoDto.Preco < 0)
+                throw new DomainException("Preço deve ser maior que zero.");
+
+            if (string.IsNullOrWhiteSpace(jogoDto.Descricao))
+                throw new DomainException("Descrição é obrigatória.");
+
+            if (jogoDto.Imagem == null || jogoDto.Imagem.Length == 0)
+                throw new DomainException("Imagem é obrigatória.");
+
+            if (jogoDto.GenerosId == null || !jogoDto.GenerosId.Any())
+                throw new DomainException("Jogo deve ter ao menos um gênero.");
+
+            if (jogoDto.PlataformaId == null || !jogoDto.PlataformaId.Any())
+                throw new DomainException("Produto deve ter ao menos uma plataforma.");
+
+            int classificacaoId = jogoDto.ClassificacaoId
+                ?? throw new DomainException("Produto deve ter uma classificação.");
 
             Jogo jogo = new Jogo
             {
@@ -115,12 +122,13 @@ namespace Royal_Games.Application.Services
                 UsuarioID = usuarioId
             };
 
-            _repository.Adicionar(jogo);
-        }
+            _repository.Adicionar(jogo, jogoDto.GenerosId, jogoDto.PlataformaId, classificacaoId);
 
+            return LerDto(jogo);
+        }
         public void Remover(int id)
         {
-            Jogo jogo = _repository.ObterPorId(id);
+            Jogo? jogo = _repository.ObterPorId(id);
 
             if (jogo == null)
                 throw new DomainException("Jogo não existe");
@@ -128,16 +136,38 @@ namespace Royal_Games.Application.Services
             _repository.Remover(id);
         }
 
-        public void Atualizar(CriarJogoDto jogoDto, int id)
+        public LerJogoDto Atualizar(AtualizarJogoDto jogoDto, int id)
         {
-            ValidarCadastro(jogoDto);
+            Jogo? jogo = _repository.ObterPorId(id);
 
-            Jogo jogo = _repository.ObterPorId(id);
+            if (jogo == null)
+                throw new DomainException("Jogo não existe");
 
-            if(jogo == null)
-               throw new DomainException("Jogo não existe");
+            if (_repository.NomeExiste(jogoDto.Nome, id))
+                throw new DomainException("Já existe outro jogo com esse nome.");
 
-            _repository.Atualizar(jogo);
+            if (jogoDto.Preco < 0)
+                throw new DomainException("Preço deve ser maior que zero.");
+
+            if (jogoDto.PlataformaId == null || !jogoDto.PlataformaId.Any())
+                throw new DomainException("Produto deve ter ao menos uma plataforma.");
+
+            jogo.Nome = jogoDto.Nome;
+            jogo.Preco = jogoDto.Preco;
+            jogo.Descricao = jogoDto.Descricao;
+
+            if (jogoDto.Imagem != null && jogoDto.Imagem.Length > 0)
+            {
+                jogo.Imagem = ImagemParaBytes.ConverterImagem(jogoDto.Imagem);
+            }
+
+            if (jogoDto.StatusJogo.HasValue)
+            {
+                jogo.StatusJogo = jogoDto.StatusJogo.Value;
+            }
+
+    _repository.Atualizar(jogo, jogoDto.GeneroId, jogoDto.PlataformaId, jogoDto.ClassificacaoId);
+            return LerDto(jogo);
         }
     }
 }

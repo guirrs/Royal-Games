@@ -1,4 +1,5 @@
-﻿using Royal_Games.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using Royal_Games.Contexts;
 using Royal_Games.Domains;
 using Royal_Games.Interface;
 
@@ -6,70 +7,100 @@ namespace Royal_Games.Repositories
 {
     public class JogoRepository : IJogoRepository
     {
-        public readonly RoyalGamesContext _context;
-        public JogoRepository(RoyalGamesContext context) 
-        { 
+        private readonly RoyalGamesContext _context;
+
+        public JogoRepository(RoyalGamesContext context)
+        {
             _context = context;
         }
+
         public List<Jogo> Listar()
         {
-            return _context.Jogo.ToList();
+            return _context.Jogo
+                .Include(j => j.Genero)
+                .Include(j => j.Plataforma)
+                .Include(j => j.ClassificacaoIndicativa)
+                .ToList();
         }
 
-        public Jogo ObterPorId(int id)
+        public Jogo? ObterPorId(int id)
         {
-            Jogo? jogo = _context.Jogo.Find(id);
-            return jogo;
+            return _context.Jogo
+                .Include(j => j.Genero)
+                .Include(j => j.Plataforma)
+                .Include(j => j.ClassificacaoIndicativa)
+                .FirstOrDefault(j => j.JogoID == id);
         }
 
         public byte[] ObterImagem(int id)
         {
-            var jogo = _context.Jogo
-                .Where(jogoAux => id == jogoAux.JogoID)
-                .Select(jogoAux => jogoAux.Imagem)
+            return _context.Jogo
+                .Where(j => j.JogoID == id)
+                .Select(j => j.Imagem)
                 .FirstOrDefault();
-            return jogo;
         }
 
-        public void Adicionar(Jogo jogoDto)
+        public void Adicionar(Jogo jogo, List<int> generosId, List<int> plataformaId, int classificacaoId)
         {
-            _context.Jogo.Add(jogoDto);
+            var generos = _context.Genero.Where(g => generosId.Contains(g.GeneroID)).ToList();
+            var plataformas = _context.Plataforma.Where(p => plataformaId.Contains(p.PlataformaID)).ToList();
+
+            jogo.Genero = generos;
+            jogo.Plataforma = plataformas;
+            jogo.ClassificacaoIndicativaID = classificacaoId;
+
+            _context.Jogo.Add(jogo);
             _context.SaveChanges();
         }
 
-        public void Atualizar(Jogo jogoDto)
+        public void Atualizar(Jogo jogo, List<int> generosId, List<int> plataformaId, int classificacaoId)
         {
-            Jogo? jogo = _context.Jogo.Find(jogoDto.JogoID);
+            var jogoExistente = _context.Jogo
+                .Include(j => j.Genero)
+                .Include(j => j.Plataforma)
+                .FirstOrDefault(j => j.JogoID == jogo.JogoID);
 
-            if(jogo == null)
-            {
+            if (jogoExistente == null)
                 return;
-            }
 
-            jogo.Nome = jogoDto.Nome;
-            jogo.Descricao = jogoDto.Descricao;
-            jogo.Preco = jogoDto.Preco;
-            jogo.Imagem = jogoDto.Imagem;
-            jogo.DataLancamento = jogoDto.DataLancamento;
+            jogoExistente.Nome = jogo.Nome;
+            jogoExistente.Descricao = jogo.Descricao;
+            jogoExistente.Preco = jogo.Preco;
+            jogoExistente.Imagem = jogo.Imagem;
+            jogoExistente.DataLancamento = jogo.DataLancamento;
+            jogoExistente.StatusJogo = jogo.StatusJogo;
+            jogoExistente.ClassificacaoIndicativaID = classificacaoId;
 
-            jogo.ClassificacaoIndicativaID = jogoDto.ClassificacaoIndicativaID;
-            jogo.Plataforma = jogoDto.Plataforma;
-            jogo.Genero = jogoDto.Genero;
+            var generos = _context.Genero.Where(g => generosId.Contains(g.GeneroID)).ToList();
+            jogoExistente.Genero.Clear();
+            foreach (var genero in generos)
+                jogoExistente.Genero.Add(genero);
+
+            var plataformas = _context.Plataforma.Where(p => plataformaId.Contains(p.PlataformaID)).ToList();
+            jogoExistente.Plataforma.Clear();
+            foreach (var plataforma in plataformas)
+                jogoExistente.Plataforma.Add(plataforma);
 
             _context.SaveChanges();
         }
 
         public void Remover(int id)
         {
-            Jogo? jogo = _context.Jogo.Find(id);
-
-            if(jogo == null)
-            {
+            var jogo = _context.Jogo.Find(id);
+            if (jogo == null)
                 return;
-            }
 
             _context.Jogo.Remove(jogo);
             _context.SaveChanges();
+        }
+
+        public bool NomeExiste(string nome, int? id = null)
+        {
+            if (id.HasValue)
+            {
+                return _context.Jogo.Any(j => j.Nome == nome && j.JogoID != id.Value);
+            }
+            return _context.Jogo.Any(j => j.Nome == nome);
         }
     }
 }
