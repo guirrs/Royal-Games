@@ -1,7 +1,16 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\47258134867\\Desktop\\Teste\\Royal Games\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\Royal Games\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|c:\\users\\46336142825\\desktop\\royal-games\\royal games\\royal games\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|solutionrelative:royal games\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|c:\\users\\46336142825\\desktop\\royal-games\\royal games\\royal games\\application\\services\\jogoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|solutionrelative:royal games\\application\\services\\jogoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +18,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\Royal Games\\Royal Games\\Program.cs",
+              "RelativeDocumentMoniker": "Royal Games\\Program.cs",
+              "ToolTip": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\Royal Games\\Royal Games\\Program.cs",
+              "RelativeToolTip": "Royal Games\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-06T11:00:28.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "JogoService.cs",
+              "DocumentMoniker": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\Royal Games\\Royal Games\\Application\\Services\\JogoService.cs",
+              "RelativeDocumentMoniker": "Royal Games\\Application\\Services\\JogoService.cs",
+              "ToolTip": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\Royal Games\\Royal Games\\Application\\Services\\JogoService.cs",
+              "RelativeToolTip": "Royal Games\\Application\\Services\\JogoService.cs",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAgwLAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-06T10:57:47.252Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"

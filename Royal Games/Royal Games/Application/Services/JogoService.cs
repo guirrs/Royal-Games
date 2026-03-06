@@ -2,15 +2,16 @@
 using Royal_Games.Domains;
 using Royal_Games.DTOs.JogoDto;
 using Royal_Games.Exceptions;
-using Royal_Games.Repositories;
+using Royal_Games.Interface;
+
 
 namespace Royal_Games.Application.Services
 {
     public class JogoService
     {
-        public readonly JogoRepository _repository;
+        public readonly IJogoRepository _repository;
 
-        public JogoService(JogoRepository repository)
+        public JogoService(IJogoRepository repository)
         {
             _repository = repository;
         }
@@ -22,13 +23,16 @@ namespace Royal_Games.Application.Services
                 Nome = jogo.Nome,
                 Descricao = jogo.Descricao,
                 Preco = jogo.Preco,
+                StatusJogo = jogo.StatusJogo,
+
                 GenerosId = jogo.Genero.Select(jogoAux => jogoAux.GeneroID).ToList(),
                 Generos = jogo.Genero.Select(jogoAux => jogoAux.Nome).ToList(),
+
                 PlataformaId = jogo.Plataforma.Select(jogoAux => jogoAux.PlataformaID).ToList(),
                 Plataforma = jogo.Plataforma.Select(jogoAux => jogoAux.Nome).ToList(),
+
                 ClassificacaoId = jogo.ClassificacaoIndicativa.ClassificacaoIndicativaID,
                 Classificacao = jogo.ClassificacaoIndicativa.Faixa,
-                StatusJogo = jogo.StatusJogo,
             };
             return jogoDto;
         }
@@ -36,7 +40,7 @@ namespace Royal_Games.Application.Services
         public List<LerJogoDto> Listar()
         {
             List<Jogo> jogos = _repository.Listar();
-            List<LerJogoDto> jogosDto = jogos.Select(jogosAux => LerDto(jogosAux)).ToList();
+            List<LerJogoDto> jogosDto = jogos.Select(jogoAux => LerDto(jogoAux)).ToList();
 
             return jogosDto;
         }
@@ -45,7 +49,7 @@ namespace Royal_Games.Application.Services
         {
             Jogo? jogoDto = _repository.ObterPorId(id);
 
-            if(jogoDto == null)
+            if (jogoDto == null)
             {
                 throw new DomainException("Esse jogo não existe");
             }
@@ -101,7 +105,7 @@ namespace Royal_Games.Application.Services
             }
         }
 
-        public void Adicionar(CriarJogoDto jogoDto, int usuarioId)
+        public LerJogoDto Adicionar(CriarJogoDto jogoDto, int usuarioId)
         {
             ValidarCadastro(jogoDto);
 
@@ -115,7 +119,9 @@ namespace Royal_Games.Application.Services
                 UsuarioID = usuarioId
             };
 
-            _repository.Adicionar(jogo);
+            _repository.Adicionar(jogo, jogoDto.GenerosId, jogoDto.PlataformaId, jogoDto.ClassificacaoId);
+
+            return LerDto(jogo);
         }
 
         public void Remover(int id)
@@ -128,16 +134,44 @@ namespace Royal_Games.Application.Services
             _repository.Remover(id);
         }
 
-        public void Atualizar(CriarJogoDto jogoDto, int id)
+        public LerJogoDto Atualizar(AtualizarJogoDto jogoDto, int id)
         {
-            ValidarCadastro(jogoDto);
-
             Jogo jogo = _repository.ObterPorId(id);
 
-            if(jogo == null)
-               throw new DomainException("Jogo não existe");
+            if (jogo == null)
+                throw new DomainException("Jogo não existe");
 
-            _repository.Atualizar(jogo);
+            if (_repository.NomeExiste(jogoDto.Nome, id: id))
+            {
+                throw new DomainException("Já existe outro produto com esse nome.");
+            }
+
+            if (jogoDto.Preco < 0)
+            {
+                throw new DomainException("Preco deve ser maior que zero;");
+            }
+
+            if (jogoDto.PlataformaId == null || jogoDto.PlataformaId.Count() == 0)
+            {
+                throw new DomainException("Produto deve ter ao menos uma categoria.");
+            }
+
+            jogo.Nome = jogoDto.Nome;
+            jogo.Preco = jogoDto.Preco;
+            jogo.Descricao = jogoDto.Descricao;
+
+            if (jogoDto.Imagem != null && jogoDto.Imagem.Length > 0)
+            {
+                jogo.Imagem = ImagemParaBytes.ConverterImagem(jogoDto.Imagem);
+            }
+
+            if (jogoDto.StatusJogo.HasValue)
+            {
+                jogo.StatusJogo = jogo.StatusJogo.Value;
+            }
+
+            _repository.Atualizar(jogo, jogoDto.GeneroId, jogoDto.PlataformaId, jogoDto.ClassificacaoId);
+            return LerDto(jogo);
         }
     }
 }
