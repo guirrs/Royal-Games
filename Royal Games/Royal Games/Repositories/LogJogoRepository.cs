@@ -20,7 +20,8 @@ namespace Royal_Games.Repositories
 
         public List<Log_AlteracaoJogo> ListarPorJogo(int id)
         {
-            return _context.Log_AlteracaoJogo.Where(log => log.JogoID == id).OrderByDescending(log => log.DataAlteracao).ToList();
+            List<Log_AlteracaoJogo> listaLog = _context.Log_AlteracaoJogo.Where(log => log.JogoID == id).OrderByDescending(log => log.DataAlteracao).ToList();
+            return listaLog;
         }
 
         public bool VerificarJogo(int id)

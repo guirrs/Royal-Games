@@ -42,14 +42,20 @@ namespace Royal_Games.Repositories
 
         public List<Jogo> ObterPorPlataforma(string plataformaNome)
         {
-            List<Jogo> jogos = _context.Jogo.Where(jogoAux => jogoAux.Plataforma.Any(j => j.Nome == plataformaNome)).ToList();
+            List<Jogo> jogos = _context.Jogo.Where(jogoAux => jogoAux.Plataforma.Any(j => j.Nome == plataformaNome))
+                .Include(j => j.Genero)
+                .Include(j => j.ClassificacaoIndicativa)
+                .Include(j => j.Plataforma).ToList();
 
             return jogos;
         }
 
         public List<Jogo> ObterPorGenero(string generoNome)
         {
-            List<Jogo> jogos = _context.Jogo.Where(jogoAux => jogoAux.Genero.Any(j => j.Nome == generoNome)).ToList();
+            List<Jogo> jogos = _context.Jogo.Where(jogoAux => jogoAux.Genero.Any(j => j.Nome == generoNome))
+                .Include(j => j.Genero)
+                .Include(j => j.ClassificacaoIndicativa)
+                .Include(j => j.Plataforma).ToList();          
 
             return jogos;
         }
@@ -99,7 +105,7 @@ namespace Royal_Games.Repositories
 
         public void Remover(int id)
         {
-            var jogo = _context.Jogo.Find(id);
+            Jogo? jogo = _context.Jogo.Find(id);
             if (jogo == null)
                 return;
 

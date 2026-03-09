@@ -1,4 +1,5 @@
 ﻿using Royal_Games.Application.Conversoes;
+using Royal_Games.Application.Regras;
 using Royal_Games.Domains;
 using Royal_Games.DTOs.JogoDto;
 using Royal_Games.Exceptions;
@@ -88,8 +89,10 @@ namespace Royal_Games.Application.Services
                 throw new DomainException("Produto deve ter ao menos uma classificação.");
         }
 
-        public List<LerJogoDto> ObterPorPlataforma (string plataforma)
+        public List<LerJogoDto> ObterPorPlataforma(string plataforma)
         {
+            ValidarAlteracaoHorario.ValidarHorario();
+
             List<Jogo> jogos = _repository.ObterPorPlataforma(plataforma);
             List<LerJogoDto> jogosDto = jogos.Select(jogoAux => LerDto(jogoAux)).ToList();
 
@@ -106,6 +109,8 @@ namespace Royal_Games.Application.Services
 
         public LerJogoDto Adicionar(CriarJogoDto jogoDto, int usuarioId)
         {
+            ValidarAlteracaoHorario.ValidarHorario();
+
             ValidarCadastro(jogoDto);
 
             Jogo jogo = new Jogo
@@ -125,16 +130,22 @@ namespace Royal_Games.Application.Services
         }
         public void Remover(int id)
         {
+            ValidarAlteracaoHorario.ValidarHorario();
+
             Jogo? jogo = _repository.ObterPorId(id);
 
             if (jogo == null)
+            {
                 throw new DomainException("Jogo não existe");
+            }
 
             _repository.Remover(id);
         }
 
         public LerJogoDto Atualizar(AtualizarJogoDto jogoDto, int id)
         {
+            ValidarAlteracaoHorario.ValidarHorario();
+
             Jogo? jogo = _repository.ObterPorId(id);
 
             if (jogo == null)
@@ -163,7 +174,7 @@ namespace Royal_Games.Application.Services
                 jogo.StatusJogo = jogoDto.StatusJogo.Value;
             }
 
-    _repository.Atualizar(jogo, jogoDto.GeneroId, jogoDto.PlataformaId);
+            _repository.Atualizar(jogo, jogoDto.GeneroId, jogoDto.PlataformaId);
             return LerDto(jogo);
         }
     }

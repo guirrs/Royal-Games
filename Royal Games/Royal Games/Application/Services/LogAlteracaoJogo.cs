@@ -33,10 +33,9 @@ namespace Royal_Games.Application.Services
         public List<LerLogJogoDto> ListarPorJogo(int jogoId)
         {
 
-
             if (!_logRepository.VerificarJogo(jogoId))
             {
-                throw new DomainException("Produto não encontrado ou não existente");
+                throw new DomainException("Jogo não encontrado ou não existente");
             }
 
             List<Log_AlteracaoJogo> logs = _logRepository.ListarPorJogo(jogoId);
@@ -49,6 +48,11 @@ namespace Royal_Games.Application.Services
                 PrecoAnterior = log.PrecoAnterior,
                 DataAlteracao = log.DataAlteracao,
             }).ToList();
+
+            if(listaLogProduto.Count == 0)
+            {
+                throw new DomainException("O jogo atual não possui alterações");
+            }
 
             return listaLogProduto;
         }
