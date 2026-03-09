@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Royal_Games.Application.Services;
 using Royal_Games.DTOs.CriarUsuarioDTO;
@@ -9,13 +10,14 @@ namespace Royal_Games.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsuarioController : ControllerBase
     {
         private readonly UsuarioService _service;
 
         public UsuarioController(UsuarioService service)
         {
-              _service = service;
+            _service = service;
         }
 
         [HttpGet]
@@ -45,7 +47,7 @@ namespace Royal_Games.Controllers
         {
             LerUsuarioDto usuario = _service.ObterPorEmail(email);
 
-            if(usuario == null)
+            if (usuario == null)
             {
                 return NotFound();
             }
