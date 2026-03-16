@@ -1,73 +1,74 @@
 # Royal Games
 
-Projeto desenvolvido em dupla para o curso técnico de Desenvolvimento de Sistemas.
-
-O objetivo inicial do projeto foi desenvolver uma **API para gerenciamento de jogos**.  
-Posteriormente, o projeto será expandido com um **frontend Next.js** que consumirá a API, com **deploy na Azure**.
-
----
-## Roadmap do Projeto
-
-- [x] Criar API de gerenciamento de jogos  
-- [ ] Desenvolver frontend Next.js para consumir a API  
-- [ ] Realizar deploy completo na Azure  
+A high-performance, secure backend API for managing a game database, currently under active development. This project serves as a practical implementation of modern backend architecture, featuring relational database design, secure authentication, and a scalable RESTful API.
 
 ---
 
-## Funcionalidades da API
-
-A API permite gerenciar as seguintes entidades, com **CRUD completo** (Criar, Ler, Atualizar e Deletar) e todas as operações protegidas com autorização (`Authorize`):
-
-- **Usuários**  
-  - `GET` – listar usuários  
-  - `POST` – adicionar novo usuário  
-  - `PUT` – atualizar usuário existente  
-  - `DELETE` – remover usuário  
-
-- **Gêneros**  
-  - `GET` – listar gêneros  
-  - `POST` – adicionar novo gênero  
-  - `PUT` – atualizar gênero existente  
-  - `DELETE` – remover gênero  
-
-- **Plataformas**  
-  - `GET` – listar plataformas  
-  - `POST` – adicionar nova plataforma  
-  - `PUT` – atualizar plataforma existente  
-  - `DELETE` – remover plataforma  
-
-- **Jogos**  
-  - `GET` – listar jogos  
-  - `POST` – adicionar novo jogo  
-  - `PUT` – atualizar jogo existente  
-  - `DELETE` – remover jogo
-
-- **Classificação**  
-  - `GET` – listar Classificações indicativas
-  - `POST` – adicionar Classificação indicativa
-  - `PUT` – atualizar Classificação indicativa existente  
-  - `DELETE` – remover Classificação indicativa
-  <br>
----
-
-## Tecnologias
+# Tech Stack
 
 ### Backend
-- ASP.NET Core  
-- SQL Server
+- Language/Framework: ASP.NET Core
+  
+- Database: SQL Server
+
+- Architecture: RESTful API with Role-Based Access Control
 
 ### Frontend
-- Next.js
+- Framework: Next.js
 
-### Deploy / Hospedagem
-- Microsoft Azure
+### Infrastructure
+- Deployment Platform: Microsoft Azure
 ---
-## Como Executar o Projeto
 
-### Backend
-```bash
-# Entre na pasta do Royal-Games
-cd Royal-Games
+# Project Roadmap
 
-# Execute o projeto
+- [x] Backend API: Fully implemented CRUD for Users, Genres, Platforms, Games, and Classifications with Authorization.
+  
+- [ ] Frontend Integration: Developing the Next.js dashboard to interface with the REST endpoints.
+        
+- [ ] Cloud Deployment: Deploying the full-stack application to Microsoft Azure.
+---
+
+# API Features
+
+The API is designed for security and scalability, providing a full CRUD suite for the following entities, all protected by Authorize policies:
+
+- **Users**: Manage system access and profiles.
+
+  
+- **Genres**: Categorize games by genre.
+
+  
+- **Platforms**: Track game availability across hardware.
+
+  
+- **Games**:Manage core game library entities.
+
+  
+- **Classifications**: Handle parental/age rating data.
+  
+---
+
+# How to Run
+### Prerequisites
+​- ​.NET 8.0 SDK or higher installed.
+
+​- SQL Server instance (LocalDB or Docker container).
+
+### ​Setup Instructions
+​- Clone the repository: git clone https://github.com/guirrs/Royal-Games.git
+
+​- Configure Database:
+Update your connection string in appsettings.json to point to your local SQL Server instance.
+
+​- Run Migrations: dotnet ef database update
+
+​- Execute the API: cd Royal-Games
 dotnet run
+
+
+
+
+
+
+
