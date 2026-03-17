@@ -22,10 +22,13 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Restore dependencies for all projects
-      run: dotnet restore "**/*.csproj"
+      run: |
+        find . -name '*.csproj' -print0 | xargs -0 -n1 dotnet restore
 
     - name: Build all projects
-      run: dotnet build "**/*.csproj" --no-restore
+      run: |
+        find . -name '*.csproj' -print0 | xargs -0 -n1 dotnet build --no-restore
 
     - name: Test all projects
-      run: dotnet test "**/*.csproj" --no-build --verbosity normal
+      run: |
+        find . -name '*.csproj' -print0 | xargs -0 -n1 dotnet test --no-build --verbosity normal
