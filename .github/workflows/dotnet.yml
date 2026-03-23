@@ -9,27 +9,29 @@ on:
     branches: [ main ]
 
 jobs:
-  build-test:
+  build:
     runs-on: ubuntu-latest
     steps:
+      
       - uses: actions/checkout@v3
 
+      
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
 
+      
       - name: Restore dependencies
-        run: dotnet restore ./Royal_Games/Royal_Games.csproj
+        run: dotnet restore "Royal-Games/RoyalGames.Api/Royal Games.csproj"
 
-      - name: Build projects
-        run: |
-          find . -name '*.csproj' -not -name '*.slnx' -not -name '*.sln' -print0 | xargs -0 dotnet build --no-restore --configuration Release
+
+      - name: Build project
+        run: dotnet build "Royal-Games/RoyalGames.Api/Royal Games.csproj" --no-restore --configuration Release
+
+      - name: Publish project
+        run: dotnet publish "Royal-Games/RoyalGames.Api/Royal Games.csproj" --configuration Release --output ./publish
 
       # - name: Run tests
       #   run: |
       #     find . -name '*Tests.csproj' -print0 | xargs -0 dotnet test --no-build --verbosity normal --configuration Release
-
-      - name: Publish projects
-        run: |
-          find . -name '*.csproj' -not -name '*.slnx' -not -name '*.sln' -print0 | xargs -0 dotnet publish --configuration Release --output ./publish
