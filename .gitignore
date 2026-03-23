@@ -3,6 +3,7 @@ bin/
 obj/
 out/
 
+
 # Visual Studio
 .vs/
 *.suo
@@ -13,17 +14,20 @@ out/
 *.vssscc
 *.vsix
 *.nupkg
+*.slnx
 
 # Rider
 .idea/
 
 # Visual Studio Code
 .vscode/
+.history/
 
 # NuGet
 *.nupkg
-packages/
 *.snupkg
+packages/
+.nuget/
 
 # Logs
 *.log
@@ -32,7 +36,17 @@ packages/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-
-# Others
 *.DS_Store
+
+# Swap / Editor temp files
 *.swp
+*.tmp
+*.bak
+
+# GitHub Actions / CI
+.github/workflows/.cache/
+.github/workflows/_temp/
+
+# Secrets / local configs
+appsettings.Local.json
+*.local.*
