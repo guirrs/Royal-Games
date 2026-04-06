@@ -23,6 +23,13 @@ A high-performance, secure backend API for managing a game database, currently u
 - **Deployment Platform:** Microsoft Azure
 
 ---
+## 📍 Project Roadmap
+
+- [x] **Backend API:** Fully implemented CRUD for Users, Genres, Platforms, Games, and Classifications with Authorization.
+- [ ] **Frontend Integration:** Developing the Next.js dashboard to interface with the REST endpoints.
+- [ ] **Cloud Deployment:** Deploying the full-stack application to Microsoft Azure.
+
+---
 
 ## 🗄️ Database Design
 
@@ -75,15 +82,6 @@ erDiagram
         decimal PreviousPrice
     }
 ```
-
----
-
-## 📍 Project Roadmap
-
-- [x] **Backend API:** Fully implemented CRUD for Users, Genres, Platforms, Games, and Classifications with Authorization.
-- [ ] **Frontend Integration:** Developing the Next.js dashboard to interface with the REST endpoints.
-- [ ] **Cloud Deployment:** Deploying the full-stack application to Microsoft Azure.
-
 ---
 
 ## 🔐 API Features
