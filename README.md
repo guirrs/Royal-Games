@@ -1,6 +1,7 @@
-# Royal Games
+# 👑 Royal Games
 ![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
 ![.NET](https://img.shields.io/badge/.NET-8.0-blue)
+![CodeQL](https://github.com/guirrs/Royal-Games/actions/workflows/codeql.yml/badge.svg)
 ![Architecture](https://img.shields.io/badge/Architecture-Layered-green)
 
 A high-performance, secure backend API for managing a game database, currently under active development. This project serves as a practical implementation of modern backend architecture, featuring relational database design, secure authentication, and a scalable RESTful API.
@@ -44,8 +45,9 @@ The API is designed for security and scalability, providing a full CRUD suite fo
 ### Interactive Documentation
 
 Once the API is running locally, you can access the **Swagger UI** to test the endpoints:
+* **HTTPS (Recommended):** [https://localhost:7255/swagger](https://localhost:7255/swagger)
+* **HTTP:** [http://localhost:5232/swagger](http://localhost:5232/swagger)
 
-> `http://localhost:PORT/swagger`
 
 ---
 
