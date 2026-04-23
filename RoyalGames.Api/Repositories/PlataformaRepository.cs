@@ -67,10 +67,9 @@ namespace Royal_Games.Repositories
             Plataforma? plataformaBanco = _context.Plataforma.FirstOrDefault(p => p.PlataformaID == id);
 
             if (plataformaBanco == null)
-                if (plataformaBanco == null)
-                {
-                    return;
-                }
+            {
+                return;
+            }
 
             _context.Plataforma.Remove(plataformaBanco);
             _context.SaveChanges();
