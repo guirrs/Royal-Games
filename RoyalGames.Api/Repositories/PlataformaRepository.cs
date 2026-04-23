@@ -22,7 +22,7 @@ namespace Royal_Games.Repositories
             }
             else
             {
-                return _context.Plataforma.Any(p => p.Nome == nome && p.PlataformaID != plataformaId.Value);
+                return _context.Plataforma.Any(p => p.Nome == nome && p.PlataformaID != plataformaId);
             }
         }
     
