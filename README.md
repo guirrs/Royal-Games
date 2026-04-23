@@ -7,6 +7,13 @@
 A high-performance, secure backend API for managing a game database, currently under active development. This project serves as a practical implementation of modern backend architecture, featuring relational database design, secure authentication, and a scalable RESTful API.
 
 ---
+## 📍 Project Roadmap
+
+- [x] **Backend API:** Fully implemented CRUD for Users, Genres, Platforms, Games, and Classifications with Authorization.
+- [ ] **Frontend Integration:** Developing the Next.js dashboard to interface with the REST endpoints.
+- [ ] **Cloud Deployment:** Deploying the full-stack application to Microsoft Azure.
+
+---
 
 ## 🛠 Tech Stack
 
@@ -22,66 +29,6 @@ A high-performance, secure backend API for managing a game database, currently u
 ### Infrastructure
 - **Deployment Platform:** Microsoft Azure
 
----
-## 📍 Project Roadmap
-
-- [x] **Backend API:** Fully implemented CRUD for Users, Genres, Platforms, Games, and Classifications with Authorization.
-- [ ] **Frontend Integration:** Developing the Next.js dashboard to interface with the REST endpoints.
-- [ ] **Cloud Deployment:** Deploying the full-stack application to Microsoft Azure.
-
----
-
-## 🗄️ Database Design
-
-The following diagram illustrates the relational structure of the database, highlighting the core entities and their associations:
-
-```mermaid
-erDiagram
-    USER ||--o{ GAME : "manages"
-    AGE_RATING ||--o{ GAME : "rates"
-    GAME ||--o{ GAME_GENRE : "has"
-    GENRE ||--o{ GAME_GENRE : "belongs to"
-    GAME ||--o{ GAME_PLATFORM : "available on"
-    PLATAFORM ||--o{ GAME_PLATFORM : "supports"
-    GAME ||--o{ GAME_CHANGE_LOG : "tracks"
-
-    USER {
-        int UserId
-        string Name
-        string Email
-        bit Status
-    }
-
-    AGE_RATING {
-        int AgeRatingId
-        string Range
-    }
-
-    GAME {
-        int GameId
-        string Name
-        decimal Price
-        datetime2 ReleaseDate
-        bit Status
-    }
-
-    GENRE {
-        int GenreId
-        string Name
-    }
-
-    PLATAFORM {
-        int PlatformId
-        string Name
-    }
-    
-    GAME_CHANGE_LOG {
-        int ChangeId
-        datetime2 ChangeDate
-        string PreviousName
-        decimal PreviousPrice
-    }
-```
 ---
 
 ## 🔐 API Features
