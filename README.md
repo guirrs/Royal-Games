@@ -1,4 +1,4 @@
-# 👑 Royal Games
+#  Royal Games
 ![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
 ![.NET](https://img.shields.io/badge/.NET-8.0-blue)
 ![CodeQL](https://github.com/guirrs/Royal-Games/actions/workflows/codeql.yml/badge.svg)
@@ -7,7 +7,7 @@
 A high-performance, secure backend API for managing a game database, currently under active development. This project serves as a practical implementation of modern backend architecture, featuring relational database design, secure authentication, and a scalable RESTful API.
 
 ---
-## 📍 Project Roadmap
+##  Project Roadmap
 
 - [x] **Backend API:** Fully implemented CRUD for Users, Genres, Platforms, Games, and Classifications with Authorization.
 - [ ] **Frontend Integration:** Developing the Next.js dashboard to interface with the REST endpoints.
@@ -15,7 +15,7 @@ A high-performance, secure backend API for managing a game database, currently u
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 ### Backend
 - **Language/Framework:** ASP.NET Core 8.0
@@ -31,7 +31,7 @@ A high-performance, secure backend API for managing a game database, currently u
 
 ---
 
-## 🔐 API Features
+##  API Features
 
 The API is designed for security and scalability, providing a full CRUD suite for the following entities, all protected by **Authorize** policies:
 
@@ -50,7 +50,7 @@ Once the API is running locally, you can access the **Swagger UI** to test the e
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 ### Prerequisites
 
