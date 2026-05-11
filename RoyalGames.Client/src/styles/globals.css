@@ -1,0 +1,12 @@
+:root {
+  --branco: #ffffff;
+  --preto: #171717;
+  --cinza: #221c2d;
+  --vermelho: #ff004c;
+  --roxo: #7a3bff;
+  --cinzaclaro: #d6d2e6;
+}
+
+.layout_guide{
+  width: 80%;
+}
