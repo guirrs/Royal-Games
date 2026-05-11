@@ -1,13 +1,21 @@
-# Royal Games
+#  Royal Games
 ![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
 ![.NET](https://img.shields.io/badge/.NET-8.0-blue)
+![CodeQL](https://github.com/guirrs/Royal-Games/actions/workflows/codeql.yml/badge.svg)
 ![Architecture](https://img.shields.io/badge/Architecture-Layered-green)
 
 A high-performance, secure backend API for managing a game database, currently under active development. This project serves as a practical implementation of modern backend architecture, featuring relational database design, secure authentication, and a scalable RESTful API.
 
 ---
+##  Project Roadmap
 
-## 🛠 Tech Stack
+- [x] **Backend API:** Fully implemented CRUD for Users, Genres, Platforms, Games, and Classifications with Authorization.
+- [ ] **Frontend Integration:** Developing the Next.js dashboard to interface with the REST endpoints.
+- [ ] **Cloud Deployment:** Deploying the full-stack application to Microsoft Azure.
+
+---
+
+##  Tech Stack
 
 ### Backend
 - **Language/Framework:** ASP.NET Core 8.0
@@ -23,15 +31,7 @@ A high-performance, secure backend API for managing a game database, currently u
 
 ---
 
-## 📍 Project Roadmap
-
-- [x] **Backend API:** Fully implemented CRUD for Users, Genres, Platforms, Games, and Classifications with Authorization.
-- [ ] **Frontend Integration:** Developing the Next.js dashboard to interface with the REST endpoints.
-- [ ] **Cloud Deployment:** Deploying the full-stack application to Microsoft Azure.
-
----
-
-## 🔐 API Features
+##  API Features
 
 The API is designed for security and scalability, providing a full CRUD suite for the following entities, all protected by **Authorize** policies:
 
@@ -44,12 +44,13 @@ The API is designed for security and scalability, providing a full CRUD suite fo
 ### Interactive Documentation
 
 Once the API is running locally, you can access the **Swagger UI** to test the endpoints:
+* **HTTPS (Recommended):** [https://localhost:7255/swagger](https://localhost:7255/swagger)
+* **HTTP:** [http://localhost:5232/swagger](http://localhost:5232/swagger)
 
-> `http://localhost:PORT/swagger`
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 ### Prerequisites
 
@@ -69,6 +70,7 @@ Once the API is running locally, you can access the **Swagger UI** to test the e
 
 3. **Apply database migrations:**
    ```bash
+   cd RoyalGames.Api
    dotnet ef database update
    ```
 
