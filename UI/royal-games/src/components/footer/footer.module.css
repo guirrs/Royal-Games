@@ -1,0 +1,22 @@
+#footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(var(--roxo), var(--preto));
+    width: 100%;
+    height: 25vh;
+    padding: 20px 80px;
+    color: var(--branco);
+}
+
+#footer img{
+    width: 20vw;
+}
+
+#footer div{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 24px;
+    text-align: end;
+}
