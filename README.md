@@ -1,27 +1,80 @@
-# Royal Games
+#  Royal Games
+![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
+![.NET](https://img.shields.io/badge/.NET-8.0-blue)
+![CodeQL](https://github.com/guirrs/Royal-Games/actions/workflows/codeql.yml/badge.svg)
+![Architecture](https://img.shields.io/badge/Architecture-Layered-green)
 
-## Project Description
+A high-performance, secure backend API for managing a game database, currently under active development. This project serves as a practical implementation of modern backend architecture, featuring relational database design, secure authentication, and a scalable RESTful API.
 
-Royal Games is an e-commerce platform designed for gamers, powered by ASP.NET Core, React, and Next.js. The platform enables users to browse, purchase, and manage their gaming titles effectively. With a sleek, modern interface and responsive design, it provides a seamless shopping experience tailored for game enthusiasts.
+---
+##  Project Roadmap
 
-### Features
-- **User Authentication**: Secure sign up and login functionalities.
-- **Product Catalog**: Comprehensive listing of games available for purchase.
-- **Shopping Cart**: Easy management of selected titles for purchase.
-- **Checkout Process**: Seamless transactions and order management.
-- **Content Management System**: Admin functionalities for managing products and users.
+- [x] **Backend API:** Fully implemented CRUD for Users, Genres, Platforms, Games, and Classifications with Authorization.
+- [ ] **Frontend Integration:** Developing the Next.js dashboard to interface with the REST endpoints.
+- [ ] **Cloud Deployment:** Deploying the full-stack application to Microsoft Azure.
 
-### Technologies Used
-- **Backend**: ASP.NET Core
-- **Frontend**: React, Next.js
+---
 
-### Installation
-1. Clone the repository.
-2. Install dependencies using npm.
-3. Run the development server.
+##  Tech Stack
 
-### Contributing
-Contributions are welcome! Please open an issue or submit a pull request to contribute.
+### Backend
+- **Language/Framework:** ASP.NET Core 8.0
+- **Database:** SQL Server
+- **Architecture:** Layered Architecture (Controllers, Services, Data)
+- **Security:** RESTful API with Role-Based Access Control (RBAC)
 
-### License
-This project is licensed under the MIT License.
+### Frontend (Upcoming)
+- **Framework:** Next.js
+
+### Infrastructure
+- **Deployment Platform:** Microsoft Azure
+
+---
+
+##  API Features
+
+The API is designed for security and scalability, providing a full CRUD suite for the following entities, all protected by **Authorize** policies:
+
+- **Users:** Manage system access and profiles.
+- **Genres:** Categorize games by genre.
+- **Platforms:** Track game availability across hardware.
+- **Games:** Manage core game library entities.
+- **Classifications:** Handle parental/age rating data.
+
+### Interactive Documentation
+
+Once the API is running locally, you can access the **Swagger UI** to test the endpoints:
+* **HTTPS (Recommended):** [https://localhost:7255/swagger](https://localhost:7255/swagger)
+* **HTTP:** [http://localhost:5232/swagger](http://localhost:5232/swagger)
+
+
+---
+
+##  How to Run
+
+### Prerequisites
+
+- .NET 8.0 SDK or higher installed.
+- SQL Server instance (LocalDB or Docker container).
+
+### Setup Instructions
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/guirrs/Royal-Games.git
+   cd Royal-Games
+   ```
+
+2. **Configure the database:**
+   - Update your connection string in `appsettings.json` to point to your local SQL Server instance.
+
+3. **Apply database migrations:**
+   ```bash
+   cd RoyalGames.Api
+   dotnet ef database update
+   ```
+
+4. **Run the API:**
+   ```bash
+   dotnet run
+   ```
