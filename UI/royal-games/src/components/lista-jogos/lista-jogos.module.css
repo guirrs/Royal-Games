@@ -1,0 +1,69 @@
+#container{
+    color: var(--cinza);
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    padding-top: 5%;
+}
+
+#container h2{
+    font-size: 32px;
+}
+
+#container hr{
+    width: 25%;
+    margin-top: 0.5%;
+    border: 1px solid var(--vermelho);
+}
+
+#filtros{
+    margin: 5vh 0;
+    display: flex;
+    justify-content: center;
+    gap: 1%;
+    width: 100%;
+    font-size: 24px;
+}
+
+#filtros input{
+    background-color: var(--cinza);
+    width: 40%;
+    height: 5vh;
+    border-radius: 10px;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+#filtros button{
+    width: 10%;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: var(--cinza);
+}
+
+#jogos{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 1% 7%;
+}
+
+#trocaEl{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: 1% 0;
+}
+
+.botaoTroca{
+    border: 3px solid var(--vermelho);
+    background-color: var(--preto-claro);
+    color: var(--branco);
+    font-size: 24px;
+    padding: 1.5% 3%;
+    border-radius: 10px;
+}
+
+.seta{
+    height: 30px;
+}

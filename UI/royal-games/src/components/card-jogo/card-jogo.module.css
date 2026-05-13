@@ -1,0 +1,30 @@
+#card{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--preto-claro);
+    color: var(--branco);
+    padding: 1% 1% 1%;
+    gap: 3%;
+    text-align: center;
+    align-items: center;
+    border: 1px solid var(--branco);
+    border-radius: 10px;
+}
+
+#card h3{
+    font-size: 28px;
+}
+
+#card h4{
+    font-size: 20px;
+}
+
+#card button{
+    background-color: var(--vermelho);
+    border: none;
+    color: var(--branco);
+    width: 70%;
+    height: 9vh;
+    border-radius: 10px;
+    font-size: 20px;
+}

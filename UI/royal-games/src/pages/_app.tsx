@@ -16,7 +16,7 @@ const exo_2 = Exo_2({
 
 export default function App({ Component, pageProps }: AppProps) {
   return(
-    <main className={`${orbitron.variable}, ${exo_2.variable}`}>
+    <main className={`${orbitron.variable} ${exo_2.variable}`}>
       <Component {...pageProps} />
     </main>
   )

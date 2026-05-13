@@ -28,6 +28,10 @@
     font-size: 24px;
 }
 
+#listaJogos{
+    background-color: var(--preto-claro);
+}
+
 #noticia{
     display: flex;
     flex-direction: column;

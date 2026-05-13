@@ -1,6 +1,7 @@
 import Header from "@/components/header/header";
 import styles from "./home.module.css"
 import Footer from "@/components/footer/footer";
+import ListaJogos from "@/components/lista-jogos/lista-jogos";
 
 const Home = () => {
     return (
@@ -13,6 +14,9 @@ const Home = () => {
                             <p>Navegue por títulos de todas as gerações, descubra plataformas, gêneros e detalhes completos antes de escolher sua próxima aventura. Seu próximo jogo favorito começa aqui.</p>
                         </div>
                         <img src="../imgs/aura.png" alt="" />
+                </section>
+                <section id={styles.listaJogos}>
+                    <ListaJogos/>
                 </section>
                 <section id={styles.noticia}>
                     <h2>Jogos online podem afetar o comportamento humano?</h2>

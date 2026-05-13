@@ -1,0 +1,46 @@
+#container{
+    background-color: var(--preto-claro);
+    color: var(--branco);
+    padding: 5%;
+}
+
+#conteudo{
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    padding: 4% 7%;
+    width: 80%;
+    border: 1px solid var(--branco);
+}
+
+#sobre{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    gap: 5%;
+
+}
+
+#sobre img{
+    height: 50vh;
+}
+
+#sobre h2{
+    text-align: center;
+    font-size: 32px;
+    padding-bottom: 5%;
+}
+
+#textos{
+    display: block;
+    flex: 1;
+    white-space: pre-wrap;
+}
+
+#info{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
