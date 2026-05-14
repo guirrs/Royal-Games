@@ -1,0 +1,24 @@
+#main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(var(--preto), var(--preto-claro));
+    width: 100%;
+    padding: 20px 80px;
+}
+
+#main img{
+    height: 10vh;
+}
+
+#main div{
+    display: flex;
+    gap: 50px;
+    color: white;
+    font-size: 24px;
+}
+
+#main a{
+    color: var(--branco);
+    text-decoration: none;
+}

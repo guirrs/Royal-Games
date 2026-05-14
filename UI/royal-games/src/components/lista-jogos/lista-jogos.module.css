@@ -51,16 +51,17 @@
 #trocaEl{
     display: flex;
     justify-content: space-around;
-    width: 50%;
-    margin: 1% 0;
+    width: 40%;
+    margin: 3% 0;
 }
 
 .botaoTroca{
     border: 3px solid var(--vermelho);
     background-color: var(--preto-claro);
     color: var(--branco);
-    font-size: 24px;
-    padding: 1.5% 3%;
+    font-size: 20px;
+    padding: 1% 0px;
+    width: 8%;
     border-radius: 10px;
 }
 

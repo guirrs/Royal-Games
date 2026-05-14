@@ -12,8 +12,8 @@
     border-radius: 5px;
     color: var(--branco);
     font-size: 24px;
-    padding: 3% 15%;
-    margin-top: 10%;
+    padding: 3% 10%;
+    margin-top: 3%;
 }
 
 #mulher{
@@ -22,7 +22,7 @@
 
 #caixa{
     height: 80vh;
-    width: 30vw;
+    width: 37vw;
     border: 1px solid var(--branco);
     padding: 2%;
     color: var(--branco);
@@ -31,14 +31,14 @@
 
 #caixa img{
     height: 20%;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
 .campo{
     display: flex;
     flex-direction: column;
-    margin: 7% auto;
-    gap: 5px;
+    margin: 8% auto;
+    gap: 10px;
     text-align: start;
     width: 80%;
     font-size: 24px;
