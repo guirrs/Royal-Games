@@ -24,27 +24,27 @@ const DetalheJogo = () => {
                     <section id={styles.info}>
                         <div id={styles.infoDireita}>
                             <div className={styles.campo}>
-                                <h3>Classificação indicativa</h3>
+                                <h3>Classificação indicativa:</h3>
                                 <p> 18 anos</p>
                             </div>
                             <div className={styles.campo}>
-                                <h3>Preço</h3>
+                                <h3>Preço:</h3>
                                 <p>R$100,00</p>
                             </div>
 
                             <div className={styles.campo}>
-                                <h3>Plataformas</h3>
+                                <h3>Plataformas:</h3>
                                 <p> XBOX</p>
                             </div>
                         </div>
                         <div id={styles.infoEsquerda}>
                             <div className={styles.campo}>
-                                <h3>Categorias</h3>
+                                <h3>Categorias:</h3>
                                 <p>s</p>
                             </div>
 
                             <div className={styles.campo}>
-                                <h3>Gêneros</h3>
+                                <h3>Gêneros:</h3>
                                 <p></p>
                             </div>
                         </div>

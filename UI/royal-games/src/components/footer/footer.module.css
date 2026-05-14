@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-image: linear-gradient(var(--roxo), var(--preto));
+    background-image: linear-gradient(var(--preto-claro), var(--preto));
     width: 100%;
     height: 25vh;
     padding: 20px 80px;

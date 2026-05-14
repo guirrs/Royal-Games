@@ -14,6 +14,16 @@
     border: 1px solid var(--branco);
 }
 
+#conteudo h1{
+    color: var(--cinza);
+}
+
+#conteudo hr{
+    border: 1px solid var(--vermelho);
+    width: 35%;
+    margin-bottom: 5%;
+}
+
 #sobre{
     display: flex;
     width: 100%;
@@ -36,11 +46,29 @@
 #textos{
     display: block;
     flex: 1;
-    white-space: pre-wrap;
+    white-space: unset;
+}
+
+#textos p{
+    font-family: var(--font-exo_2);
 }
 
 #info{
     display: flex;
     justify-content: space-between;
     width: 80%;
+    padding-top: 5%;
+}
+
+#infoDireita, #infoEsquerda{
+    display: flex;
+    flex-direction: column;
+    gap: 15%;
+}
+
+.campo{
+    display: flex;
+    gap: 10%;
+    align-items: center;
+    white-space: nowrap;
 }
