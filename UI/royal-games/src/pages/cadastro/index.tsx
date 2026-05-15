@@ -49,7 +49,7 @@ const Cadastro = () => {
                     </div>
                 </div>
 
-                <button>Cadastro</button>
+                <button id={styles.botaoCadastro}>Cadastro</button>
 
             </section>
 

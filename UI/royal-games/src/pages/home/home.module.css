@@ -5,7 +5,7 @@
 #banner{
     display: flex;
     justify-content: space-between;
-    background-color: var(--preto);
+    background-image: linear-gradient(var(--preto-claro) 5% , color-mix(in srgb, var(--roxo) 50%, var(--preto)), var(--preto-claro)100%);
     color: var(--branco);
     align-items: center;
     font-family: var(--font-orbitron);

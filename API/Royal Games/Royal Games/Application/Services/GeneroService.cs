@@ -1,9 +1,10 @@
 ﻿using Royal_Games.Domains;
 using Royal_Games.Exceptions;
 using Royal_Games.Interface;
-using Royal_Games.DTO.GeneroDTo;
+using Royal_Games.DTO.GeneroDto;
 using System.Collections.Generic;
 using System.Linq;
+using Royal_Games.DTO.GeneroDto;
 
 namespace Royal_Games.Application.Services
 {
@@ -16,17 +17,17 @@ namespace Royal_Games.Application.Services
             _repository = repository;
         }
 
-        public List<LerGeneroDTO> Listar()
+        public List<LerGeneroDto> Listar()
         {
             List<Genero> generos = _repository.Listar();
-            return generos.Select(g => new LerGeneroDTO
+            return generos.Select(g => new LerGeneroDto
             {
                 GeneroID = g.GeneroID,
                 Nome = g.Nome
             }).ToList();
         }
 
-        public LerGeneroDTO ObterPorID(int id)
+        public LerGeneroDto ObterPorID(int id)
         {
             Genero genero = _repository.BuscarporID(id);
             if (genero == null)
@@ -34,7 +35,7 @@ namespace Royal_Games.Application.Services
                 throw new DomainException("Gênero não encontrado");
             }
 
-            return new LerGeneroDTO
+            return new LerGeneroDto
             {
                 GeneroID = genero.GeneroID,
                 Nome = genero.Nome
@@ -74,7 +75,7 @@ namespace Royal_Games.Application.Services
             _repository.Cadastrar(novoGenero);
         }
 
-        public void Atualizar(int id, LerGeneroDTO generoDTO)
+        public void Atualizar(int id, LerGeneroDto generoDTO)
         {
             ValidarNome(generoDTO.Nome);
 

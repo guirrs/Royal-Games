@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Royal_Games.Application.Services;
-using Royal_Games.DTO.GeneroDTo;
+using Royal_Games.DTO.GeneroDto;
+using Royal_Games.DTO.GeneroDto;
 using Royal_Games.Exceptions;
 using System.Collections.Generic;
 
@@ -18,18 +19,18 @@ namespace Royal_Games.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<LerGeneroDTO>> Listar()
+        public ActionResult<List<LerGeneroDto>> Listar()
         {
-            List<LerGeneroDTO> generos = _service.Listar();
+            List<LerGeneroDto> generos = _service.Listar();
             return Ok(generos);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<LerGeneroDTO> ObterPorId(int id)
+        public ActionResult<LerGeneroDto> ObterPorId(int id)
         {
             try
             {
-                LerGeneroDTO genero = _service.ObterPorID(id);
+                LerGeneroDto genero = _service.ObterPorID(id);
                 return Ok(genero);
             }
             catch (DomainException ex)
@@ -53,11 +54,11 @@ namespace Royal_Games.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Atualizar(int id, LerGeneroDTO generoDTO)
+        public ActionResult Atualizar(int id, LerGeneroDto generoDto)
         {
             try
             {
-                _service.Atualizar(id, generoDTO);
+                _service.Atualizar(id, generoDto);
                 return NoContent();
             }
             catch (DomainException ex)

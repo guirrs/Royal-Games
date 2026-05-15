@@ -1,7 +1,7 @@
 import styles from "./lista-jogos.module.css"
 import CardJogo from "../card-jogo/card-jogo"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAngleLeft, faAngleRight, faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import { faAngleLeft, faAngleRight} from "@fortawesome/free-solid-svg-icons"
 
 const ListaJogos = () => {
     return (

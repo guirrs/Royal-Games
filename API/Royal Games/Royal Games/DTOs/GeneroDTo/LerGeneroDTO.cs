@@ -1,6 +1,6 @@
-﻿namespace Royal_Games.DTO.GeneroDTo
+﻿namespace Royal_Games.DTO.GeneroDto
 {
-    public class generoDTO
+    public class LerGeneroDto
     {
            
      public int GeneroID { get; set; }
