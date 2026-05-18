@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./header.module.css"
 
 const Header = () => {
@@ -6,7 +7,7 @@ const Header = () => {
             < img src="../imgs/logo.png" alt="" />
             <div>
                 <a href="">Catálogo</a>
-                <a href="">Login</a>
+                <Link href="/login">Login</Link>
             </div>
         </header>
     )

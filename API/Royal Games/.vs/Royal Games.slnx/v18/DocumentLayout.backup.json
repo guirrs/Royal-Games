@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\API\\Royal Games\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|c:\\users\\46336142825\\desktop\\royal-games\\api\\royal games\\royal games\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|solutionrelative:royal games\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|c:\\users\\46336142825\\desktop\\royal-games\\api\\royal games\\royal games\\application\\autentificacao\\geradortokenjwt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|solutionrelative:royal games\\application\\autentificacao\\geradortokenjwt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|c:\\users\\46336142825\\desktop\\royal-games\\api\\royal games\\royal games\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|solutionrelative:royal games\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|c:\\users\\46336142825\\desktop\\royal-games\\api\\royal games\\royal games\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|solutionrelative:royal games\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EB87CA5F-8E1B-D212-A9D4-A8FEBB5DF859}|Royal Games\\Royal Games.csproj|c:\\users\\46336142825\\desktop\\royal-games\\api\\royal games\\royal games\\application\\services\\autenticacaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -114,7 +114,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -126,16 +126,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GeradorTokenJwt.cs",
               "DocumentMoniker": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\API\\Royal Games\\Royal Games\\Application\\Autentificacao\\GeradorTokenJwt.cs",
               "RelativeDocumentMoniker": "Royal Games\\Application\\Autentificacao\\GeradorTokenJwt.cs",
-              "ToolTip": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\API\\Royal Games\\Royal Games\\Application\\Autentificacao\\GeradorTokenJwt.cs*",
-              "RelativeToolTip": "Royal Games\\Application\\Autentificacao\\GeradorTokenJwt.cs*",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAqwBsAAAAsAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\API\\Royal Games\\Royal Games\\Application\\Autentificacao\\GeradorTokenJwt.cs",
+              "RelativeToolTip": "Royal Games\\Application\\Autentificacao\\GeradorTokenJwt.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAgwBoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-15T13:27:04.022Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-15T13:27:04.022Z"
             },
             {
               "$type": "Document",
@@ -159,8 +158,7 @@
               "RelativeToolTip": "Royal Games\\Application\\Services\\LogAlteracaoJogo.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAQwA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-09T11:44:55.827Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-09T11:44:55.827Z"
             },
             {
               "$type": "Document",
@@ -172,8 +170,7 @@
               "RelativeToolTip": "Royal Games\\Application\\Services\\GeneroService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T12:20:26.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-06T12:20:26.185Z"
             },
             {
               "$type": "Document",
@@ -185,8 +182,7 @@
               "RelativeToolTip": "Royal Games\\DTOs\\GeneroDto\\LerGeneroDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T12:21:24.958Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-06T12:21:24.958Z"
             },
             {
               "$type": "Document",
@@ -210,34 +206,32 @@
               "RelativeToolTip": "Royal Games\\Controllers\\GeneroController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T12:23:19.679Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-06T12:23:19.679Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\API\\Royal Games\\Royal Games\\Program.cs",
               "RelativeDocumentMoniker": "Royal Games\\Program.cs",
               "ToolTip": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\API\\Royal Games\\Royal Games\\Program.cs",
               "RelativeToolTip": "Royal Games\\Program.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAowDUAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAowGgAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-06T13:13:12.285Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\API\\Royal Games\\Royal Games\\appsettings.json",
               "RelativeDocumentMoniker": "Royal Games\\appsettings.json",
-              "ToolTip": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\API\\Royal Games\\Royal Games\\appsettings.json*",
-              "RelativeToolTip": "Royal Games\\appsettings.json*",
+              "ToolTip": "C:\\Users\\46336142825\\Desktop\\Royal-Games\\API\\Royal Games\\Royal Games\\appsettings.json",
+              "RelativeToolTip": "Royal Games\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-06T12:56:37.409Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-06T12:56:37.409Z"
             },
             {
               "$type": "Document",
@@ -249,8 +243,7 @@
               "RelativeToolTip": "Royal Games\\Application\\Services\\AutenticacaoService.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAA5wAgAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T12:25:39.214Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-06T12:25:39.214Z"
             },
             {
               "$type": "Document",
@@ -274,8 +267,7 @@
               "RelativeToolTip": "Royal Games\\DTOs\\GeneroDto\\CriarGeneroDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-15T11:49:51.175Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-15T11:49:51.175Z"
             },
             {
               "$type": "Document",
