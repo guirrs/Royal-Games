@@ -5,7 +5,7 @@ type jogoFormulario ={
     descricao: string,
     preco: string,
     classificacaoId: number,
-    image: File,
+    image: File | null,
     generosId: number[],
     plataformaId: number[],
 }
@@ -30,7 +30,7 @@ export async function listarJogo(){
 
         const jogos = jogosAtivos.map((jogo: jogoListagem) => ({
             ...jogo,
-            imagemUr: `${api.defaults.baseURL}${jogo.imagemUrl}`
+            imagemUrl: `${api.defaults.baseURL}${jogo.imagemUrl}`
         }));
 
         return jogos
@@ -74,6 +74,29 @@ export async function cadastrarJogo(dados: jogoFormulario){
 
         await api.post("Jogo", formData);
     } catch(error:any){
+        throw new Error(error.response.data)
+    }
+}
+
+export async function editarJogo(jogoId: number, dados: jogoFormulario){
+    try{
+        const formData = new FormData();
+
+        formData.append("nome", dados.nome);
+        formData.append("descricao", dados.descricao);
+        formData.append("preco", dados.preco);
+        
+        if(dados.image)
+            formData.append("imagem", dados.image);
+        dados.generosId.forEach((id) => {
+            formData.append("generosId", id.toString());
+        });
+        dados.plataformaId.forEach((id) => {
+            formData.append("plataformaId", id.toString());
+        });
+
+        await api.put("Jogo/" + jogoId, formData)
+    } catch(error: any){
         throw new Error(error.response.data)
     }
 }

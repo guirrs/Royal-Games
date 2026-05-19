@@ -1,7 +1,6 @@
-import { Asul } from "next/font/google";
 import {api} from "./api";
 
-export async function listarCategoria(){
+export async function listarGenero(){
     try{
         const response = await api.get("Genero");
         return response;
