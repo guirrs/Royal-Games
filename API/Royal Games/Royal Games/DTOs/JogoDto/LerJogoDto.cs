@@ -9,6 +9,8 @@
         public bool? StatusJogo { get; set; }
         public DateTime DataLancamento { get; set; }
 
+        public string imagemUrl { get; set; } = string.Empty;
+
         // Genero
         public List<int>? GenerosId { get; set; }
         public List<string>? Generos {  get; set; }

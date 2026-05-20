@@ -72,6 +72,7 @@ export async function cadastrarJogo(dados: jogoFormulario){
             formData.append("plataformaId", id.toString());
         });
 
+        console.log(Object.fromEntries(formData))
         await api.post("Jogo", formData);
     } catch(error:any){
         throw new Error(error.response.data)

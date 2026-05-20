@@ -20,11 +20,12 @@ namespace Royal_Games.Application.Services
         {
             return new LerJogoDto
             {
+                JogoId = jogo.JogoID,
                 Nome = jogo.Nome,
                 Descricao = jogo.Descricao,
                 Preco = jogo.Preco,
                 StatusJogo = jogo.StatusJogo,
-
+                imagemUrl = $"jogo/{jogo.JogoID}/imagem",
                 GenerosId = jogo.Genero?.Select(g => g.GeneroID).ToList(),
                 Generos = jogo.Genero?.Select(g => g.Nome).ToList(),
 

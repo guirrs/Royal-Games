@@ -88,7 +88,6 @@ public class JogoController : ControllerBase
 
     [HttpPost]
     [Consumes("Multipart/form-data")]
-    [Authorize]
     public ActionResult<LerJogoDto> Adicionar([FromForm] CriarJogoDto jogoDto)
     {
         try
@@ -107,7 +106,6 @@ public class JogoController : ControllerBase
 
     [HttpPut]
     [Consumes("Multipart/form-data")]
-    [Authorize]
     public ActionResult Atualizar(int id, [FromForm] AtualizarJogoDto jogoDto)
     {
         try
@@ -122,7 +120,6 @@ public class JogoController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize]
     public ActionResult Remover(int id)
     {
         try

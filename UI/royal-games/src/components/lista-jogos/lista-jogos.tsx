@@ -7,7 +7,7 @@ import { listarJogo } from "@/pages/api/jogoService"
 import { useEffect, useState } from "react"
 
 interface Jogo {
-    jogoID: number,
+    jogoId: number,
     nome: string,
     preco: number,
     imagemUrl: string,
@@ -43,8 +43,8 @@ const ListaJogos = () => {
             <div id={styles.jogos}>
                 {jogos.length > 0 ? jogos.map((item) =>(
                     <CardJogo
-                    key={item.jogoID}
-                    jogoID={item.jogoID}
+                    key={item.jogoId}
+                    jogoID={item.jogoId}
                     nome={item.nome}
                     image={item.imagemUrl}
                     preco={item.preco}

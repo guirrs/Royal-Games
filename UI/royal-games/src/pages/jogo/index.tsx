@@ -9,6 +9,7 @@ import { erro, notificacao } from "@/utils/toast";
 import { ToastContainer } from "react-toastify";
 import { listarGenero } from "../api/generoService";
 import { listarPlataforma } from "../api/plataformaService";
+import { ListarClassificacao } from "../api/classificacaoService";
 
 interface Genero {
     generoID: number,
@@ -20,29 +21,54 @@ interface Plataforma {
     nome: string
 }
 
+interface Classificaco {
+    id: number,
+    faixa: string
+}
+
 const Cadastro = () => {
 
     const [genero, setGenero] = useState<Genero[]>([])
     const [plataforma, setPlataforma] = useState<Plataforma[]>([]);
+    const [classificacao, setClassificacao] = useState<Classificaco[]>([]);
 
     const [nome, setNome] = useState<string>("");
     const [preco, setPreco] = useState<string>("");
     const [generosSelecionados, setGenerosSeleciondado] = useState<number[]>([]);
     const [plataformaSelecionados, setPlataformaSeleciondado] = useState<number[]>([]);
-    const [classificacao, setClassificacao] = useState<number>(1);
+    const [classificacaoSelecionados, setClassificacaoSelecionados] = useState<number>(1);
     const [descricao, setDescricao] = useState<string>("");
     const [image, setImage] = useState<File | null>(null);
+
+    const [estaAutenticado, setEstaAutenticado] = useState(false);
 
     const router = useRouter();
     const id = router.query.id;
     let telaEditar = id ? true : false;
 
-    async function  listarGeneroJogo(){
+    async function carregarInformacoes(){
+        if(!id) return;
+
+        const jogo = await listarPorId(Number(id))
+        setNome(jogo.nome);
+        setDescricao(jogo.descricao);
+        setPreco(jogo.preco);
+        setGenero(jogo.generoID);
+        setPlataforma(jogo.plataformaID);
+        setClassificacao(jogo.classificacaoId);
+    }
+
+    async function listarGeneroJogo() {
         const listaGenero = await listarGenero();
         setGenero(listaGenero.data)
     }
 
-    async function  listarPlataformaJogo(){
+    async function listarClassificacaoJogo() {
+        const listarClassificacao = await ListarClassificacao();
+        setClassificacao(listarClassificacao.data);
+    }
+
+    async function listarPlataformaJogo() {
         const listaPlataforma = await listarPlataforma();
         setPlataforma(listaPlataforma.data)
     }
@@ -54,7 +80,7 @@ const Cadastro = () => {
                 nome,
                 descricao,
                 preco,
-                classificacaoId: classificacao,
+                classificacaoId: classificacaoSelecionados,
                 image,
                 generosId: generosSelecionados,
                 plataformaId: plataformaSelecionados
@@ -71,14 +97,22 @@ const Cadastro = () => {
             erro(error.message);
         }
     }
-    
-    listarGeneroJogo()
-    listarPlataformaJogo()
-    useEffect(() =>{
-        if(!router.isReady) return;
 
+    useEffect(() => {
+        if (!router.isReady) return;
 
-    })
+        setEstaAutenticado(true);
+
+        listarGeneroJogo();
+        listarPlataformaJogo();
+        listarClassificacaoJogo();
+
+        carregarInformacoes();
+
+    }, [router.isReady, id])
+
+    if(!estaAutenticado)
+        return null
 
     return (
         <main id={styles.pagina}>
@@ -113,7 +147,14 @@ const Cadastro = () => {
                             </div>
                             <div className={styles.botaoInput}>
                                 <label htmlFor="Clasificação Indicativa">Clasificação Indicativa</label>
-                                <button></button>
+                                <select value={classificacaoSelecionados}
+                                    onChange={(e) => setClassificacaoSelecionados
+                                        (Number(e.target.value))}
+                                >
+                                    {classificacao.map((item) => (
+                                        <option key={item.id} value={item.id}>{item.faixa}</option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
                         <div className={styles.linha}>
@@ -138,9 +179,11 @@ const Cadastro = () => {
                         <label htmlFor="">Descrição</label>
                         <input type="text" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
                     </div>
+
+                    <button id={styles.botaoCadastro}>Cadastro</button>
+
                 </form>
 
-                <button id={styles.botaoCadastro}>Cadastro</button>
 
             </section>
 

@@ -10,6 +10,7 @@ type Jogo ={
 }
 
 const CardJogo = ({jogoID, nome, preco, image} : Jogo) =>{
+    
     return(
         <article id={styles.card}>
             <Link href={"/detalhe-jogo/" + jogoID}>
@@ -17,7 +18,9 @@ const CardJogo = ({jogoID, nome, preco, image} : Jogo) =>{
             </Link>
             <h3>{nome}</h3>
             <h4>{preco}</h4>
-            <button>Destalhes</button>
+            <Link href={"/detalhe-jogo/" + jogoID}>
+                <button>Destalhes</button>
+            </Link>
         </article>
     )
 }
