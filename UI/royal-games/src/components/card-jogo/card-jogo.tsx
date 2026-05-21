@@ -23,7 +23,9 @@ const CardJogo = ({ jogoID, nome, preco, image, onDelete, paginaJogo }: Jogo) =>
             {paginaJogo ? (
                 <>
                     <button onClick={() => onDelete(jogoID)}>Excluir</button>
+                    <Link href={"/editar-jogo/" + jogoID}>
                     <button>Editar</button>
+                    </Link>
                 </>
             ) : (
                 <Link href={"/detalhe-jogo/" + jogoID}>

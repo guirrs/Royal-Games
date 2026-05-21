@@ -75,8 +75,7 @@ export async function cadastrarJogo(dados: jogoFormulario){
         dados.plataformaId.forEach((id) => {
             formData.append("plataformaId", id.toString());
         });
-
-        console.log(Object.fromEntries(formData))
+        
         await api.post("Jogo", formData);
     } catch(error:any){
         throw new Error(error.response.data)
@@ -91,6 +90,8 @@ export async function editarJogo(jogoId: number, dados: jogoFormulario){
         formData.append("descricao", dados.descricao);
         formData.append("preco", dados.preco);
         
+        formData.append("classificacaoId", String(dados.classificacaoId));
+
         if(dados.image)
             formData.append("imagem", dados.image);
         dados.generosId.forEach((id) => {

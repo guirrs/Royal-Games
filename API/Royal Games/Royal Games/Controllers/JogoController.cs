@@ -104,7 +104,7 @@ public class JogoController : ControllerBase
         }
     }
 
-    [HttpPut]
+    [HttpPut("{id}")]
     [Consumes("Multipart/form-data")]
     public ActionResult Atualizar(int id, [FromForm] AtualizarJogoDto jogoDto)
     {
