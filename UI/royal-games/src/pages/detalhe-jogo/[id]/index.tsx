@@ -49,7 +49,7 @@ const DetalheJogo = () => {
             <article id={styles.container}>
                 {jogo ? (<>
                     <div id={styles.conteudo}>
-                        <h1>Destalhes do Jogo</h1>
+                        <h1>Detalhes do Jogo</h1>
                         <hr></hr>
                         <section className={styles.sobre}>
                             <img src={jogo.imagemUrl} alt="" />

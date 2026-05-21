@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import { listarGenero } from "../api/generoService";
 import { listarPlataforma } from "../api/plataformaService";
 import { ListarClassificacao } from "../api/classificacaoService";
+import { verificarAutenticacao } from "@/utils/auth";
 
 interface Genero {
     generoID: number,
@@ -46,8 +47,8 @@ const Cadastro = () => {
     const id = router.query.id;
     let telaEditar = id ? true : false;
 
-    async function carregarInformacoes(){
-        if(!id) return;
+    async function carregarInformacoes() {
+        if (!id) return;
 
         const jogo = await listarPorId(Number(id))
         setNome(jogo.nome);
@@ -101,6 +102,11 @@ const Cadastro = () => {
     useEffect(() => {
         if (!router.isReady) return;
 
+        if (!verificarAutenticacao()) {
+            router.push("/home")
+            return;
+        }
+
         setEstaAutenticado(true);
 
         listarGeneroJogo();
@@ -111,7 +117,7 @@ const Cadastro = () => {
 
     }, [router.isReady, id])
 
-    if(!estaAutenticado)
+    if (!estaAutenticado)
         return null
 
     return (
@@ -171,7 +177,11 @@ const Cadastro = () => {
                             </div>
                             <div className={`${styles.campo} ${styles.imagem}`}>
                                 <label htmlFor="">Imagem</label>
-                                <input type="image" />
+                                <input type="file" onChange={(e) => {
+                                    if (e.target.files && e.target.files[0]) {
+                                        setImage(e.target.files[0]);
+                                    }
+                                }} />
                             </div>
                         </div>
                     </div>
@@ -187,7 +197,8 @@ const Cadastro = () => {
 
             </section>
 
-            <ListaJogos />
+            <ListaJogos 
+            cadastro = {true}/>
             <Footer />
         </main>
     )

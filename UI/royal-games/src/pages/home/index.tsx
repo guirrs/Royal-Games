@@ -3,6 +3,8 @@ import styles from "./home.module.css"
 import Footer from "@/components/footer/footer";
 import ListaJogos from "@/components/lista-jogos/lista-jogos";
 
+const pagina = false;
+
 const Home = () => {
     return (
         <>
@@ -16,7 +18,9 @@ const Home = () => {
                         <img src="../imgs/aura.png" alt="" />
                 </section>
                 <section id={styles.listaJogos}>
-                    <ListaJogos/>
+                    <ListaJogos 
+                    cadastro = {false}
+                    />
                 </section>
                 <section id={styles.noticia}>
                     <h2>Jogos online podem afetar o comportamento humano?</h2>

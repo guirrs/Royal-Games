@@ -1,3 +1,4 @@
+import { Asul } from "next/font/google";
 import {api} from "./api";
 
 type jogoFormulario ={
@@ -62,9 +63,12 @@ export async function cadastrarJogo(dados: jogoFormulario){
         formData.append("nome", dados.nome);
         formData.append("descricao", dados.descricao);
         formData.append("preco", dados.preco);
+
+        formData.append("classificacaoId", String(dados.classificacaoId));
         
         if(dados.image)
             formData.append("imagem", dados.image);
+
         dados.generosId.forEach((id) => {
             formData.append("generosId", id.toString());
         });
@@ -99,5 +103,14 @@ export async function editarJogo(jogoId: number, dados: jogoFormulario){
         await api.put("Jogo/" + jogoId, formData)
     } catch(error: any){
         throw new Error(error.response.data)
+    }
+}
+
+export async function excluirJogo(jogoId: number){
+    try{
+        await api.delete("Jogo/" + jogoId);
+    }
+    catch(error: any){
+        throw new Error(error.response.data);
     }
 }
