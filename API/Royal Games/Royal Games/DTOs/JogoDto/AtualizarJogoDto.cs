@@ -7,7 +7,7 @@
         public decimal Preco { get; set; }
         public IFormFile Imagem { get; set; } = null!;
 
-        public List<int> GeneroId { get; set; } = null!;
+        public List<int> GenerosId { get; set; } = null!;
         public List<int> PlataformaId { get; set; } = null!;
         public int ClassificacaoId { get; set; }
         public bool? StatusJogo { get; set; }

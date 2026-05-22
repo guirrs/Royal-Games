@@ -175,7 +175,7 @@ namespace Royal_Games.Application.Services
                 jogo.StatusJogo = jogoDto.StatusJogo.Value;
             }
 
-            _repository.Atualizar(jogo, jogoDto.GeneroId, jogoDto.PlataformaId);
+            _repository.Atualizar(jogo, jogoDto.GenerosId, jogoDto.PlataformaId);
             return LerDto(jogo);
         }
     }

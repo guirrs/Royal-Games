@@ -25,6 +25,8 @@ const DetalheJogo = () => {
 
     const id = params?.id;
 
+    console.log(id)
+
     async function listaJogo() {
         try {
             const response = await listarPorId(Number(id))

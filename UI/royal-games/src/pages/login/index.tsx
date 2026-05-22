@@ -21,7 +21,7 @@ const Login = () => {
             
             notificacao("Login bem sucedido!")
             setTimeout(() => {
-                router.push("/home")
+                router.push("/jogo")
         }, 2000);
         }catch(error: any){
             erro(error.message)

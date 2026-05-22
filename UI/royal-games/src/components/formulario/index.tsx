@@ -42,19 +42,19 @@ const Formulario = () => {
     const [estaAutenticado, setEstaAutenticado] = useState(false);
 
     const router = useRouter();
-    const id  = router.query.id;
+    const id = router.query.id;
 
     async function carregarInformacoes() {
         if (!id || isNaN(Number(id))) return;
 
         try {
             const jogo = await listarPorId(Number(id));
-            
+
             if (jogo) {
                 setNome(jogo.nome ?? "");
                 setDescricao(jogo.descricao ?? "");
                 setPreco(jogo.preco ?? "");
-                
+
                 setGenerosSeleciondado(jogo.generosId ?? (jogo.generoID ? [Number(jogo.generoID)] : []));
                 setPlataformaSeleciondado(jogo.plataformaId ?? (jogo.plataformaID ? [Number(jogo.plataformaID)] : []));
                 setClassificacaoSelecionados(Number(jogo.classificacaoId ?? 1));
@@ -146,72 +146,74 @@ const Formulario = () => {
                 <h1>{id ? "Editar jogo" : "Cadastrar novo jogo"}</h1>
                 <hr />
             </div>
-            <form id={styles.camposInfos} onSubmit={salvarJogo}>
-                <div id={styles.campoEsquerdo}>
-                    <div className={`${styles.campo} ${styles.nome}`}>
-                        <label>Nome</label>
-                        <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
+            <form id={styles.formulario} onSubmit={salvarJogo}>
+                <section id={styles.campoInfo}>
+                    <div id={styles.campoEsquerdo}>
+                        <div className={`${styles.campo} ${styles.nome}`}>
+                            <label>Nome</label>
+                            <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
+                        </div>
+                        <div className={styles.linha}>
+                            <div className={`${styles.campo} ${styles.valor}`}>
+                                <label>Valor</label>
+                                <input type="text" value={preco} onChange={(e) => setPreco(e.target.value)} />
+                            </div>
+                            <div className={styles.selectFormulario}>
+                                <label htmlFor="Genero">Gênero</label>
+                                <select
+                                    multiple
+                                    value={(generosSelecionados ?? []).map(String)}
+                                    onChange={(e) => setGenerosSeleciondado(
+                                        Array.from(e.target.selectedOptions).map((option) => Number(option.value))
+                                    )}
+                                >
+                                    {(genero ?? []).map((item) => (
+                                        <option value={item.generoID} key={item.generoID}>{item.nome}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className={styles.selectFormulario}>
+                                <label htmlFor="Clasificação Indicativa">Classificação Indicativa</label>
+                                <select
+                                    value={classificacaoSelecionados}
+                                    onChange={(e) => setClassificacaoSelecionados(Number(e.target.value))}
+                                >
+                                    {(classificacao ?? []).map((item) => (
+                                        <option key={item.id} value={item.id}>{item.faixa}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                        <div className={styles.linha}>
+                            <div className={styles.selectFormulario}>
+                                <label htmlFor="Plataforma">Plataforma</label>
+                                <select
+                                    multiple
+                                    value={(plataformaSelecionados ?? []).map(String)}
+                                    onChange={(e) => setPlataformaSeleciondado(
+                                        Array.from(e.target.selectedOptions).map((option) => Number(option.value))
+                                    )}
+                                >
+                                    {(plataforma ?? []).map((item) => (
+                                        <option key={item.plataformaID} value={item.plataformaID}>{item.nome}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className={`${styles.campo} ${styles.imagem}`}>
+                                <label>Imagem</label>
+                                <input type="file" onChange={(e) => {
+                                    if (e.target.files && e.target.files[0]) {
+                                        setImage(e.target.files[0]);
+                                    }
+                                }} />
+                            </div>
+                        </div>
                     </div>
-                    <div className={styles.linha}>
-                        <div className={`${styles.campo} ${styles.valor}`}>
-                            <label>Valor</label>
-                            <input type="text" value={preco} onChange={(e) => setPreco(e.target.value)} />
-                        </div>
-                        <div className={styles.botaoInput}>
-                            <label htmlFor="Genero">Gênero</label>
-                            <select 
-                                multiple 
-                                value={(generosSelecionados ?? []).map(String)}
-                                onChange={(e) => setGenerosSeleciondado(
-                                    Array.from(e.target.selectedOptions).map((option) => Number(option.value))
-                                )}
-                            >
-                                {(genero ?? []).map((item) => (
-                                    <option value={item.generoID} key={item.generoID}>{item.nome}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className={styles.botaoInput}>
-                            <label htmlFor="Clasificação Indicativa">Classificação Indicativa</label>
-                            <select 
-                                value={classificacaoSelecionados}
-                                onChange={(e) => setClassificacaoSelecionados(Number(e.target.value))}
-                            >
-                                {(classificacao ?? []).map((item) => (
-                                    <option key={item.id} value={item.id}>{item.faixa}</option>
-                                ))}
-                            </select>
-                        </div>
+                    <div id={styles.campoDireito}>
+                        <label>Descrição</label>
+                        <input type="text" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
                     </div>
-                    <div className={styles.linha}>
-                        <div className={styles.botaoInput}>
-                            <label htmlFor="Plataforma">Plataforma</label>
-                            <select 
-                                multiple 
-                                value={(plataformaSelecionados ?? []).map(String)}
-                                onChange={(e) => setPlataformaSeleciondado(
-                                    Array.from(e.target.selectedOptions).map((option) => Number(option.value))
-                                )}
-                            >
-                                {(plataforma ?? []).map((item) => (
-                                    <option key={item.plataformaID} value={item.plataformaID}>{item.nome}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className={`${styles.campo} ${styles.imagem}`}>
-                            <label>Imagem</label>
-                            <input type="file" onChange={(e) => {
-                                if (e.target.files && e.target.files[0]) {
-                                    setImage(e.target.files[0]);
-                                }
-                            }} />
-                        </div>
-                    </div>
-                </div>
-                <div id={styles.campoDireito}>
-                    <label>Descrição</label>
-                    <input type="text" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
-                </div>
+                </section>
 
                 <button id={styles.botaoCadastro}>{id ? "Salvar Alterações" : "Cadastro"}</button>
             </form>

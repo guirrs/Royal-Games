@@ -34,11 +34,13 @@
     font-size: 20px;
 }
 
-#filtros button{
-    width: 10%;
+#filtros button, #filtros select{
+    width: 13%;
     font-size: 20px;
     border-radius: 10px;
     background-color: var(--cinza);
+    text-align: center;
+    padding: 1px;
 }
 
 #jogos{
@@ -60,11 +62,26 @@
     background-color: var(--preto-claro);
     color: var(--branco);
     font-size: 20px;
-    padding: 1% 0px;
-    width: 8%;
+    align-items: center;
+    padding: 8px 30px;
     border-radius: 10px;
+    font-size: 30px;
 }
 
 .seta{
-    height: 30px;
+    height: 60px;
+    border: 1px solid var(--vermelho);
+    border-radius: 10px;
+    width: 60px;
+}
+.paginacaoLista{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    list-style: none;
+
+}
+
+.itemNumero{
+    color: aqua;
 }

@@ -60,20 +60,20 @@ export async function cadastrarJogo(dados: jogoFormulario){
     try{
         const formData = new FormData();
 
-        formData.append("nome", dados.nome);
-        formData.append("descricao", dados.descricao);
-        formData.append("preco", dados.preco);
+        formData.append("Nome", dados.nome);
+        formData.append("Descricao", dados.descricao);
+        formData.append("Preco", dados.preco);
 
-        formData.append("classificacaoId", String(dados.classificacaoId));
+        formData.append("ClassificacaoId", String(dados.classificacaoId));
         
         if(dados.image)
-            formData.append("imagem", dados.image);
+            formData.append("Imagem", dados.image);
 
         dados.generosId.forEach((id) => {
-            formData.append("generosId", id.toString());
+            formData.append("GenerosId", id.toString());
         });
         dados.plataformaId.forEach((id) => {
-            formData.append("plataformaId", id.toString());
+            formData.append("PlataformaId", id.toString());
         });
         
         await api.post("Jogo", formData);
@@ -86,19 +86,19 @@ export async function editarJogo(jogoId: number, dados: jogoFormulario){
     try{
         const formData = new FormData();
 
-        formData.append("nome", dados.nome);
-        formData.append("descricao", dados.descricao);
-        formData.append("preco", dados.preco);
+        formData.append("Nome", dados.nome);
+        formData.append("Descricao", dados.descricao);
+        formData.append("Preco", dados.preco);
         
-        formData.append("classificacaoId", String(dados.classificacaoId));
+        formData.append("ClassificacaoId", String(dados.classificacaoId));
 
         if(dados.image)
-            formData.append("imagem", dados.image);
+            formData.append("Imagem", dados.image);
         dados.generosId.forEach((id) => {
-            formData.append("generosId", id.toString());
+            formData.append("GenerosId", id.toString());
         });
         dados.plataformaId.forEach((id) => {
-            formData.append("plataformaId", id.toString());
+            formData.append("PlataformaId", id.toString());
         });
 
         await api.put("Jogo/" + jogoId, formData)
